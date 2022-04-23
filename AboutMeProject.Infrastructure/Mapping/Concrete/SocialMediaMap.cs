@@ -15,7 +15,6 @@ namespace AboutMeProject.Infrastructure.Mapping.Concrete
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(400).IsRequired(true);
-
             base.Configure(builder);
 
         }

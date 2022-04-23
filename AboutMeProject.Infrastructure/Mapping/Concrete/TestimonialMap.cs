@@ -17,7 +17,6 @@ namespace AboutMeProject.Infrastructure.Mapping.Concrete
             builder.Property(x => x.ClientName).HasMaxLength(200).IsRequired(true);
             builder.Property(x => x.Comment).IsRequired(true);
             builder.Property(x => x.Company).IsRequired(true);
-
             base.Configure(builder);
 
         }
