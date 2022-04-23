@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AboutMeProject.Domain\AboutMeProject.Domain.csproj" />
+    <ProjectReference Include="..\AboutMeProject.Infrastructure\AboutMeProject.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
