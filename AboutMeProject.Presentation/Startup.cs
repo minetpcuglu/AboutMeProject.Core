@@ -1,3 +1,6 @@
+using AboutMeProject.Application.Services.Concrete;
+using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Application.Utilities.AutoMapper;
 using AboutMeProject.Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,9 +29,17 @@ namespace AboutMeProject.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             #region context
             services.AddTransient<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //uygulamaya geliþtirdiðimiz context nesnesi DbContext olarak tanýtýlmaktadýr.
+            #endregion
+
+            #region IoC
+            services.AddScoped<IAboutService, AboutService>(); /// dý 
+            #endregion
+            #region Automapper
+            services.AddAutoMapper(typeof(AboutMapping));
             #endregion
         }
 
@@ -50,7 +61,8 @@ namespace AboutMeProject.Presentation
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();  //identity
+            app.UseAuthorization();   //IoC
 
             app.UseEndpoints(endpoints =>
             {

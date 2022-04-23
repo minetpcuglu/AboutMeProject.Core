@@ -1,0 +1,46 @@
+﻿@model List<AboutDTO>
+@{
+    Layout = null;
+}
+
+<table class="table table-bordered" id="tblEducation">
+    <tr>
+        <td>#</td>
+        <td>Okul Adı</td>
+        <th> Bölüm  </th>
+        <th> Not Ortalaması </th>
+        <th> Tarih </th>
+        <th> Sil</th>
+        <th> Güncelle  </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Adress</td>
+            <td>@item.Age</td>
+            <td>@item.Description</td>
+        
+            @*<td><a href="/Education/DeleteEducation/@item.Id" id="DeleteBtn" onclick="return confirm('Silmek Istediginize Eminmisiniz');" class="btn btn-outline-danger"> <b>Sil</b></a></td>
+                <td>*@
+            <td>
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                        onclick="Delete(@item.Id)">
+                    Sil
+                </button>
+            </td>
+            @*<td>
+                    <button type="button" class="btn btn-outline-danger btn-sm"
+                            onclick="Update(@item.Id)">
+                        Güncelle
+                    </button>
+                </td>*@
+            <td><a href="/Education/UpdateEducation/@item.Id" class="btn btn-outline-warning"> <b>Güncelle</b></a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Education/AddEducation/" class="btn btn-primary">Eğitim Bilgisi Ekle</a>
