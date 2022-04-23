@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public class Contact
+   public class Contact : BaseEntity<int>
     {
         public string Title { get; set; }
         public string Description { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public class Feature
+   public class Feature : BaseEntity<int>
     {
         public string Haeder { get; set; }
         public string Name { get; set; }

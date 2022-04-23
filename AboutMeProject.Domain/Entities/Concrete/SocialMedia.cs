@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public class SocialMedia
+   public class SocialMedia : BaseEntity<int>
     {
         public string Name { get; set; }
         public string URL { get; set; }

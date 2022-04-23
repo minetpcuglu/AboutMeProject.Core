@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="FluentApi\" />
     <Folder Include="UnitOfWork\" />
     <Folder Include="Repository\" />
   </ItemGroup>

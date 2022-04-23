@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public class Testimonial
+   public class Testimonial : BaseEntity<int>
     {
         public string ClientName { get; set; }
         public string Company { get; set; }

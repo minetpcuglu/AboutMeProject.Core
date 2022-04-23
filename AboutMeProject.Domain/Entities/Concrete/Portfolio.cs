@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public class Portfolio
+   public class Portfolio : BaseEntity<int>
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AboutMeProject.Domain.Entities.Interface;
+using AboutMeProject.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
