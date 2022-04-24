@@ -12,6 +12,7 @@
     <header class="bg-light">
         <partial name="~/Views/Shared/PartialViews/NavbarPartialView.cshtml" />
     </header>
+    @await Component.InvokeAsync("FeatureList")
     <div class="page-content">
         <div id="content">
             <header>

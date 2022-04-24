@@ -30,7 +30,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return aboutRepository; //=> eğer dolu gelirse bağlı olan _appRepository yu bana geri ver
             }
         }
-
+        private IFeatureRepository featureRepository;
+        public IFeatureRepository FeatureRepository
+        {
+            get
+            {
+                if (featureRepository == null) featureRepository = new FeatureRepository(_db); 
+                return featureRepository; 
+            }
+        }
         public async Task Commit() => await _db.SaveChangesAsync();
 
         public async Task<int> SaveChangesAsync()

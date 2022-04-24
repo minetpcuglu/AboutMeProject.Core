@@ -10,6 +10,7 @@ namespace AboutMeProject.Domain.UnitOfWork
    public interface IUnitOfWork : IAsyncDisposable
     {
         IAboutRepository AboutRepository { get; }
+        IFeatureRepository FeatureRepository { get; }
         Task<int> SaveChangesAsync();
         Task Commit();// => Başarılı bir işlemin sonucunda çalıştırılır. İşlemin başalamasından itibaren tüm değişikliklerin veri tabanına uyhulanmasını temin eder.
 

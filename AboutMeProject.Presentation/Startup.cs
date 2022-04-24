@@ -37,9 +37,11 @@ namespace AboutMeProject.Presentation
 
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
+            services.AddScoped<IFeatureService, FeatureService>(); /// dý 
             #endregion
             #region Automapper
             services.AddAutoMapper(typeof(AboutMapping));
+            services.AddAutoMapper(typeof(FeatureMapping));
             #endregion
         }
 

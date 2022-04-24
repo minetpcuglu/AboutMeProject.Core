@@ -16,6 +16,7 @@ namespace AboutMeProject.Application.Utilities.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AboutRepository>().As<IAboutRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FeatureRepository>().As<IFeatureRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
         }
     }
