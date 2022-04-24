@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Application.Services.Interface
 {
-   public interface IAboutService
+   public interface IAboutService:IGenericService<AboutDTO>
     {
-        Task<List<AboutDTO>> GetAll();
-        Task Add(AboutDTO aboutDTO);
-        Task<AboutDTO> GetById(int id);
-        Task Update(AboutDTO aboutDTO);
-        Task<bool> Delete(int id);
+       
     }
 }
