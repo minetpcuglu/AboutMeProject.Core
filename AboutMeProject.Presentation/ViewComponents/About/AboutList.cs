@@ -5,21 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AboutMeProject.Presentation.ViewComponents.Feature
+namespace AboutMeProject.Presentation.ViewComponents.About
 {
-    public class FeatureList : ViewComponent
+    public class AboutList : ViewComponent
     {
-        private readonly IFeatureService _featureService;
+        private readonly IAboutService _aboutService;
         //private readonly IValidator<EducationVM> _educationValidator;
-        public FeatureList(IFeatureService featureService/*, IValidator<EducationVM> educationValidator*/)
+        public AboutList(IAboutService aboutService/*, IValidator<EducationVM> educationValidator*/)
         {
             //_educationValidator = educationValidator;
-            _featureService = featureService;
+            _aboutService = aboutService;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-           
-            var value = await _featureService.GetAll();
+            var value = await _aboutService.GetAll();
             return View(value);
         }
     }
