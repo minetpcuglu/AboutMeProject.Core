@@ -2,6 +2,7 @@
 using AboutMeProject.Domain.UnitOfWork;
 using AboutMeProject.Infrastructure.Context;
 using AboutMeProject.Infrastructure.Repository.EntityTypeRepo;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
     public class UnitOfWork : IUnitOfWork // => IUnitOfWork'den implement yolu ile gövdelendireceğim methodlarımı aldım.
     {
         private readonly ApplicationDbContext _db;
+        private IDbContextTransaction _transation;
         public UnitOfWork(ApplicationDbContext db)
         {
             this._db = db ?? throw new ArgumentNullException("Database Can Not To Be Null..!");
@@ -31,7 +33,25 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
 
         public async Task Commit() => await _db.SaveChangesAsync();
 
-       
+        public async Task<int> SaveChangesAsync()
+        {
+            var transaction = _transation ?? _db.Database.BeginTransaction();
+            var count = 0;
+
+            using (transaction)
+            {
+                try
+                {
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                }
+            }
+
+            return count;
+        }
 
         private bool isDisposing = false;
         public async ValueTask DisposeAsync()

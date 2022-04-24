@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -24,14 +25,27 @@ namespace AboutMeProject.Application.Services.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task Add(AboutDTO aboutDTO)
+        public async Task Add(AboutDTO aboutDTO)
         {
-            throw new NotImplementedException();
+
+            var addAbout = _mapper.Map<AboutDTO, About>(aboutDTO);
+            await _unitOfWork.AboutRepository.Insert(addAbout);
+            await _unitOfWork.Commit();
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id != 0)
+            {
+                var deleteAbout = await _unitOfWork.AboutRepository.Get(x => x.Id == id);
+               await _unitOfWork.AboutRepository.Delete(deleteAbout);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<List<AboutDTO>> GetAll()
@@ -44,14 +58,21 @@ namespace AboutMeProject.Application.Services.Concrete
 
         }
 
-        public Task<AboutDTO> GetById(int id)
+        public async Task<AboutDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var hobby = await _unitOfWork.AboutRepository.GetById(id);
+            return _mapper.Map<AboutDTO>(hobby);
         }
 
-        public Task Update(AboutDTO aboutDTO)
+        public async Task Update(AboutDTO aboutDTO)
         {
-            throw new NotImplementedException();
+            var aboutUpdate = _mapper.Map<AboutDTO, About>(aboutDTO);
+
+            if (aboutUpdate.Id != 0)
+            {
+                await _aboutRepository.Update(aboutUpdate);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }
