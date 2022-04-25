@@ -51,6 +51,16 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
             }
         }
 
+        private ISkillRepository skillRepository;
+        public ISkillRepository SkillRepository
+        {
+            get
+            {
+                if (skillRepository == null) skillRepository = new SkillRepository(_db);
+                return skillRepository;
+            }
+        }
+
 
 
         public async Task Commit() => await _db.SaveChangesAsync();
