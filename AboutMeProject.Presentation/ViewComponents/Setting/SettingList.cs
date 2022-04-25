@@ -5,24 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AboutMeProject.Presentation.Controllers
+namespace AboutMeProject.Presentation.ViewComponents.Setting
 {
-    public class DefaultController : Controller
+    public class SettingList : ViewComponent
     {
         private readonly ISettingService _settingService;
         //private readonly IValidator<EducationVM> _educationValidator;
-     
-        public DefaultController(ISettingService settingService)
+        public SettingList(ISettingService settingService/*, IValidator<EducationVM> educationValidator*/)
         {
+            //_educationValidator = educationValidator;
             _settingService = settingService;
         }
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public async Task<IActionResult> List()
-        {
             var value = await _settingService.GetAll();
             return View(value);
         }

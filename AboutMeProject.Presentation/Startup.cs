@@ -38,10 +38,13 @@ namespace AboutMeProject.Presentation
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
             services.AddScoped<IFeatureService, FeatureService>(); /// dý 
+            services.AddScoped<ISettingService, SettingService>(); /// dý 
+         
             #endregion
             #region Automapper
             services.AddAutoMapper(typeof(AboutMapping));
             services.AddAutoMapper(typeof(FeatureMapping));
+            services.AddAutoMapper(typeof(SettingMapping));
             #endregion
         }
 

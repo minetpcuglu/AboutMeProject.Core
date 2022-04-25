@@ -11,6 +11,7 @@ namespace AboutMeProject.Domain.UnitOfWork
     {
         IAboutRepository AboutRepository { get; }
         IFeatureRepository FeatureRepository { get; }
+       ISettingRepository SettingRepository { get; }
         Task<int> SaveChangesAsync();
         Task Commit();// => Başarılı bir işlemin sonucunda çalıştırılır. İşlemin başalamasından itibaren tüm değişikliklerin veri tabanına uyhulanmasını temin eder.
 

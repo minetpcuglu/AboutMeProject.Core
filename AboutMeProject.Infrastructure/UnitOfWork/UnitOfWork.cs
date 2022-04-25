@@ -30,6 +30,7 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return aboutRepository; //=> eğer dolu gelirse bağlı olan _appRepository yu bana geri ver
             }
         }
+
         private IFeatureRepository featureRepository;
         public IFeatureRepository FeatureRepository
         {
@@ -39,8 +40,20 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return featureRepository; 
             }
         }
-        public async Task Commit() => await _db.SaveChangesAsync();
 
+        private ISettingRepository settingRepository;
+        public ISettingRepository SettingRepository
+        {
+            get
+            {
+                if (settingRepository == null) settingRepository = new SettingRepository(_db);
+                return settingRepository;
+            }
+        }
+
+
+
+        public async Task Commit() => await _db.SaveChangesAsync();
         public async Task<int> SaveChangesAsync()
         {
             var transaction = _transation ?? _db.Database.BeginTransaction();
