@@ -60,6 +60,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return skillRepository;
             }
         }
+        private IPortfolioRepository portfolioRepository;
+        public IPortfolioRepository PortfolioRepository
+        {
+            get
+            {
+                if (portfolioRepository == null) portfolioRepository = new PortfolioRepository(_db);
+                return portfolioRepository;
+            }
+        }
 
 
 
