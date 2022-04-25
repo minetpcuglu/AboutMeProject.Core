@@ -39,12 +39,14 @@ namespace AboutMeProject.Presentation
             services.AddScoped<IAboutService, AboutService>(); /// dý 
             services.AddScoped<IFeatureService, FeatureService>(); /// dý 
             services.AddScoped<ISettingService, SettingService>(); /// dý 
+            services.AddScoped<ISkillService, SkillService>(); /// dý 
          
             #endregion
             #region Automapper
             services.AddAutoMapper(typeof(AboutMapping));
             services.AddAutoMapper(typeof(FeatureMapping));
             services.AddAutoMapper(typeof(SettingMapping));
+            services.AddAutoMapper(typeof(SkillMapping));
             #endregion
         }
 

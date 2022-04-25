@@ -34,9 +34,12 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<List<SkillDTO>> GetAll()
+        public async Task<List<SkillDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var skillList = await _unitOfWork.SkillRepository.GetAll();
+            var list = _mapper.Map<List<SkillDTO>>(skillList);
+            await _unitOfWork.Commit();
+            return list;
         }
 
         public Task<SkillDTO> GetById(int id)
