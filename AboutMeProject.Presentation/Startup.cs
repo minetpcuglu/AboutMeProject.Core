@@ -43,6 +43,7 @@ namespace AboutMeProject.Presentation
             services.AddScoped<IContactService, ContactService>(); /// dý 
             services.AddScoped<IPortfolioService, PortfolioService>(); /// dý 
             services.AddScoped<IEducationService, EducationService>(); /// dý 
+            services.AddScoped<IMessageService, MessageService>(); /// dý 
          
             #endregion
             #region Automapper
@@ -53,6 +54,7 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(ContactMapping));
             services.AddAutoMapper(typeof(PortfolioMapping));
             services.AddAutoMapper(typeof(EducationMapping));
+            services.AddAutoMapper(typeof(MessageMapping));
             #endregion
         }
 

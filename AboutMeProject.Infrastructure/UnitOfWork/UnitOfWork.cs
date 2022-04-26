@@ -36,8 +36,8 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
         {
             get
             {
-                if (featureRepository == null) featureRepository = new FeatureRepository(_db); 
-                return featureRepository; 
+                if (featureRepository == null) featureRepository = new FeatureRepository(_db);
+                return featureRepository;
             }
         }
 
@@ -67,6 +67,17 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
             {
                 if (skillRepository == null) skillRepository = new SkillRepository(_db);
                 return skillRepository;
+            }
+        }
+
+
+        private IMessageRepository messageRepository;
+        public IMessageRepository MessageRepository
+        {
+            get
+            {
+                if (messageRepository == null) messageRepository = new MessageRepository(_db);
+                return messageRepository;
             }
         }
         private IPortfolioRepository portfolioRepository;

@@ -17,6 +17,7 @@ namespace AboutMeProject.Application.Utilities.IoC
         {
             builder.RegisterType<AboutRepository>().As<IAboutRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EducationRepository>().As<IEducationRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PortfolioRepository>().As<IPortfolioRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerLifetimeScope();
