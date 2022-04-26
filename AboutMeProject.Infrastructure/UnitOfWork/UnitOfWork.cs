@@ -50,6 +50,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return settingRepository;
             }
         }
+        private IContactRepository contactRepository;
+        public IContactRepository ContactRepository
+        {
+            get
+            {
+                if (contactRepository == null) contactRepository = new ContactRepository(_db);
+                return contactRepository;
+            }
+        }
 
         private ISkillRepository skillRepository;
         public ISkillRepository SkillRepository
