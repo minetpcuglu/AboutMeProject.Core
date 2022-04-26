@@ -41,6 +41,7 @@ namespace AboutMeProject.Presentation
             services.AddScoped<ISettingService, SettingService>(); /// dý 
             services.AddScoped<ISkillService, SkillService>(); /// dý 
             services.AddScoped<IPortfolioService, PortfolioService>(); /// dý 
+            services.AddScoped<IEducationService, EducationService>(); /// dý 
          
             #endregion
             #region Automapper
@@ -49,6 +50,7 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(SettingMapping));
             services.AddAutoMapper(typeof(SkillMapping));
             services.AddAutoMapper(typeof(PortfolioMapping));
+            services.AddAutoMapper(typeof(EducationMapping));
             #endregion
         }
 

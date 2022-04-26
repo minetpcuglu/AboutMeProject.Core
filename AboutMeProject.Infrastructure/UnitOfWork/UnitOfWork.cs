@@ -69,6 +69,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return portfolioRepository;
             }
         }
+        private IEducationRepository educationRepository;
+        public IEducationRepository EducationRepository
+        {
+            get
+            {
+                if (educationRepository == null) educationRepository = new EducationRepository(_db);
+                return educationRepository;
+            }
+        }
 
 
 

@@ -11,6 +11,7 @@ namespace AboutMeProject.Domain.UnitOfWork
     {
         IAboutRepository AboutRepository { get; }
         IPortfolioRepository PortfolioRepository { get; }
+        IEducationRepository EducationRepository { get; }
         IFeatureRepository FeatureRepository { get; }
        ISettingRepository SettingRepository { get; }
         ISkillRepository SkillRepository { get; }
