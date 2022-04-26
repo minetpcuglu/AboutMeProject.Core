@@ -11,5 +11,7 @@ namespace AboutMeProject.Application.Models.DTOs
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
+        public string ImageUrl2 { get; set; }
+        public string ProjectUrl { get; set; }
     }
 }
