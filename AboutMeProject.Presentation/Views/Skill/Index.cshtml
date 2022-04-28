@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tblHobby">
+    <tr>
+        <td>#</td>
+        <td>Hobby</td>
+        <th> Güncelle  </th>
+        <th> Sil  </th>
+    </tr>
+
+ 
+        <tr>
+            <td>Id</td>
+            <td>MyHobby</td>
+            @*<td><a href="/Hobby/DeleteHobby/@item.Id" id="DeleteBtn" onclick="return confirm('Silmek Istediginize Eminmisiniz');" class="btn btn-outline-danger"> <b>Sil</b></a></td>7*@
+            <td><a href="/Hobby/UpdateHobby/Id" class="btn btn-outline-warning"> <b>Güncelle</b></a></td>
+            <td>
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                        onclick="Delete(Id)">
+                    Sil
+                </button>
+            </td>
+        </tr>
+    
+
+</table>
+

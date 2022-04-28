@@ -1,0 +1,56 @@
+﻿@model List<SkillDTO>
+@{
+    ViewData["Title"] = "GetList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-header border-0">
+    <h3 class="mb-0">Skill List table</h3>
+</div>
+<!-- Light table -->
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="sort" data-sort="name">#</th>
+                <th scope="col" class="sort" data-sort="budget">Title</th>
+                <th scope="col" class="sort" data-sort="status">Value</th>
+                <th scope="col">Delete</th>
+                <th scope="col" class="sort" data-sort="completion">Update</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td class="budget">
+                        @item.Title
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <span class="completion mr-2">@item.Value %</span>
+                            <div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger "
+                                onclick="Delete(@item.Id)">
+                            Delete
+                        </button>
+                    </td>
+                    <td><a href="/Hobby/UpdateHobby/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Hobby/AddHobby/" class="btn btn-primary">New Add Skill</a>
+</div>
