@@ -65,11 +65,7 @@ namespace AboutMeProject.Presentation
                                                                             //services.AddSingleton<IValidator<EducationVM>, EducationValidation>();
             #endregion
 
-            //#region ajax
-            //services.AddControllers().AddNewtonsoftJson();
-            //services.AddControllersWithViews().AddNewtonsoftJson();
-            //services.AddRazorPages().AddNewtonsoftJson();
-            //#endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
