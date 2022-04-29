@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -24,9 +25,13 @@ namespace AboutMeProject.Application.Services.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task Add(EducationDTO t)
+        public async Task Add(EducationDTO t)
         {
-            throw new NotImplementedException();
+            var addEducation = _mapper.Map<EducationDTO, Education>(t);
+            addEducation.IsActive = true;
+            addEducation.IsDeleted = false;
+            await _unitOfWork.EducationRepository.Insert(addEducation);
+            await _unitOfWork.Commit();
         }
 
         public Task<bool> Delete(int id)
@@ -41,7 +46,7 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<List<EducationDTO>> GetAll()
         {
-            var educationList = await _unitOfWork.EducationRepository.GetAll();
+            var educationList = await _unitOfWork.EducationRepository.GetListAll(x => x.IsActive == true);
             var list = _mapper.Map<List<EducationDTO>>(educationList);
             await _unitOfWork.Commit();
             return list;

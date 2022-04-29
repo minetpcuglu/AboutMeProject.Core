@@ -29,5 +29,28 @@ namespace AboutMeProject.Presentation.Controllers
             var value = await _educationService.GetAll();
             return View(value);
         }
+
+        [HttpGet]
+        public IActionResult AddEducation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddEducation(EducationDTO education)
+        {
+            var validateResult = _educationValidator.Validate(education);
+            if (validateResult.IsValid)
+            {
+                await _educationService.Add(education);
+                return RedirectToAction("GetList");
+            }
+            else
+            {
+                foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View(education);
+
+        }
     }
 }
