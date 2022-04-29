@@ -37,24 +37,36 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<bool> Delete(int id)
         {
-            if (id != 0)
+            var result = await _unitOfWork.AboutRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
             {
-                var deleteAbout = await _unitOfWork.AboutRepository.Get(x => x.Id == id);
-                deleteAbout.IsActive = false;
-                deleteAbout.IsDeleted = true;
-                await _unitOfWork.AboutRepository.Delete(deleteAbout);
+                var person = await _unitOfWork.AboutRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
 
+                await _unitOfWork.AboutRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.AboutRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
+            {
+                var person = await _unitOfWork.AboutRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
+
+                await _unitOfWork.AboutRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<List<AboutDTO>> GetAll()

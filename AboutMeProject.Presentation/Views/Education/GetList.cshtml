@@ -25,32 +25,32 @@
         <tbody class="list">
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @item.Id
-                </td>
-                <td class="budget">
-                    @item.SchollName
-                </td>
-                <td class="budget">
-                    @item.Section
-                </td>
-                <td class="budget">
-                    @item.NoteAvarage
-                </td>
-                <td class="budget">
-                    @item.Date
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger "
-                            onclick="Delete(@item.Id)">
-                        Delete
-                    </button>
-                </td>
-                @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
-                <td><a href="/Skill/UpdateSkill/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td class="budget">
+                        @item.SchollName
+                    </td>
+                    <td class="budget">
+                        @item.Section
+                    </td>
+                    <td class="budget">
+                        @item.NoteAvarage
+                    </td>
+                    <td class="budget">
+                        @item.Date
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger "
+                                onclick="DeleteEducations(@item.Id)">
+                            Delete
+                        </button>
+                    </td>
+                    @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
+                    <td><a href="/Education/UpdateEducation/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
 
-            </tr>
+                </tr>
             }
         </tbody>
     </table>
@@ -59,7 +59,7 @@
 
 
 @section scripts{
-    <script type="text/javascript" src="~/Skill.js"></script>
+    <script type="text/javascript" src="~/Person.js"></script>
 }
 
 
