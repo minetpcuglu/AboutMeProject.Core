@@ -1,7 +1,10 @@
+using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Concrete;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Application.Utilities.AutoMapper;
+using AboutMeProject.Application.Utilities.Validations.FluentValidation;
 using AboutMeProject.Infrastructure.Context;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,6 +58,11 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(PortfolioMapping));
             services.AddAutoMapper(typeof(EducationMapping));
             services.AddAutoMapper(typeof(MessageMapping));
+            #endregion
+
+            #region FluentValidation
+            services.AddSingleton<IValidator<SkillDTO>, SkillValidation>(); // constructor injection kullanacaðýmýz için Validator sýnýfýmýzý ve servisimizi inject ediyoruz. 
+            //services.AddSingleton<IValidator<EducationVM>, EducationValidation>();
             #endregion
         }
 

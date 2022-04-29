@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace AboutMeProject.Presentation.Controllers
     public class SkillController : Controller
     {
         private readonly ISkillService _skillService;
-        //private readonly IValidator<EducationVM> _educationValidator;
-        public SkillController(ISkillService skillService/*, IValidator<EducationVM> educationValidator*/)
+        private readonly IValidator<SkillDTO> _skillValidator;
+        public SkillController(ISkillService skillService, IValidator<SkillDTO> skillValidator)
         {
-            //_educationValidator = educationValidator;
+            _skillValidator = skillValidator;
             _skillService = skillService;
         }
         public IActionResult Index()
@@ -36,8 +37,19 @@ namespace AboutMeProject.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSkill(SkillDTO skill)
         {
-            var addSkill = _skillService.Add(skill);
-            return RedirectToAction("GetList");
+            var validateResult = _skillValidator.Validate(skill);
+            if (validateResult.IsValid)
+            {
+                await _skillService.Add(skill);
+                return RedirectToAction("GetList");
+            }
+            else
+            {
+                foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View(skill);
+       
         }
     }
 }

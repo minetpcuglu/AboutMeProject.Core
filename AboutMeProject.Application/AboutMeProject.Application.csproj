@@ -6,13 +6,14 @@
 
   <ItemGroup>
     <Folder Include="Models\VMs\" />
-    <Folder Include="Utilities\Validations\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
