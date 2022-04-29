@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -24,9 +25,11 @@ namespace AboutMeProject.Application.Services.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task Add(SkillDTO t)
+        public async Task Add(SkillDTO t)
         {
-            throw new NotImplementedException();
+            var addSkill = _mapper.Map<SkillDTO, Skill>(t);
+            await _unitOfWork.SkillRepository.Insert(addSkill);
+            await _unitOfWork.Commit();
         }
 
         public Task<bool> Delete(int id)
