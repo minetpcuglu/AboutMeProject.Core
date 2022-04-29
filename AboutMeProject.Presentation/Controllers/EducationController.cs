@@ -83,12 +83,32 @@ namespace AboutMeProject.Presentation.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> UpdateSkill(int id)
-        //{
-        //    var value = await _educService.GetById(id);
-        //    return View(value);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> UpdateEducation(int id)
+        {
+            var value = await _educationService.GetById(id);
+            return View(value);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEducation(EducationDTO educationDTO)
+        {
+
+
+            var validateResult = _educationValidator.Validate(educationDTO);
+            if (validateResult.IsValid)
+            {
+                await _educationService.Update(educationDTO);
+                return RedirectToAction("GetList");
+            }
+            else
+            {
+                foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View(educationDTO);
+
+        }
 
     }
 }

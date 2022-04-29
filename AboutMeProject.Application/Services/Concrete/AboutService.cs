@@ -35,22 +35,6 @@ namespace AboutMeProject.Application.Services.Concrete
             await _unitOfWork.Commit();
         }
 
-        public async Task<bool> Delete(int id)
-        {
-            var result = await _unitOfWork.AboutRepository.AnyAsync(a => a.Id == id);
-            if (result == true)
-            {
-                var person = await _unitOfWork.AboutRepository.GetAsync2(a => a.Id == id);
-                person.IsDeleted = true;
-                person.IsActive = false;
-
-                await _unitOfWork.AboutRepository.Update(person);
-                await _unitOfWork.SaveChangesAsync();
-                return true;
-            }
-
-            return false;
-        }
 
         public async Task<bool> DeleteAsync(int id)
         {

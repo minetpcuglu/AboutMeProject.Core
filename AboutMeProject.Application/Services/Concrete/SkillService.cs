@@ -34,22 +34,7 @@ namespace AboutMeProject.Application.Services.Concrete
             await _unitOfWork.Commit();
         }
 
-        //public async Task<bool> Delete(int id)
-        //{
-        //    if (id != 0)
-        //    {
-        //        var deleteSkill = await _unitOfWork.SkillRepository.Get(x => x.Id == id);
-        //        deleteSkill.IsActive = false;
-        //        deleteSkill.IsDeleted = true;
-        //        await _unitOfWork.SkillRepository.Delete(deleteSkill);
-
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+       
 
         public async Task<List<SkillDTO>> GetAll()
         {
@@ -92,11 +77,6 @@ namespace AboutMeProject.Application.Services.Concrete
             }
 
             return false;
-        }
-
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

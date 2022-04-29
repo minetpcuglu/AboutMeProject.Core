@@ -34,22 +34,6 @@ namespace AboutMeProject.Application.Services.Concrete
             await _unitOfWork.Commit();
         }
 
-        public async Task<bool> Delete(int id)
-        {
-            var result = await _unitOfWork.EducationRepository.AnyAsync(a => a.Id == id);
-            if (result == true)
-            {
-                var person = await _unitOfWork.EducationRepository.GetAsync2(a => a.Id == id);
-                person.IsDeleted = true;
-                person.IsActive = false;
-
-                await _unitOfWork.EducationRepository.Update(person);
-                await _unitOfWork.SaveChangesAsync();
-                return true;
-            }
-
-            return false;
-        }
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -76,14 +60,24 @@ namespace AboutMeProject.Application.Services.Concrete
             return list;
         }
 
-        public Task<EducationDTO> GetById(int id)
+        public async Task<EducationDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var education = await _unitOfWork.EducationRepository.GetById(id);
+            return _mapper.Map<EducationDTO>(education);
         }
 
-        public Task Update(EducationDTO t)
+        public async Task Update(EducationDTO t)
         {
-            throw new NotImplementedException();
+
+            var educationUpdate = _mapper.Map<EducationDTO, Education>(t);
+
+            if (educationUpdate.Id != 0)
+            {
+                educationUpdate.IsActive = true;
+                educationUpdate.IsDeleted = false;
+                await _educationRepository.Update(educationUpdate);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }
