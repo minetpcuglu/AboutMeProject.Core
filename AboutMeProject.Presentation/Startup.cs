@@ -62,8 +62,14 @@ namespace AboutMeProject.Presentation
 
             #region FluentValidation
             services.AddSingleton<IValidator<SkillDTO>, SkillValidation>(); // constructor injection kullanacaðýmýz için Validator sýnýfýmýzý ve servisimizi inject ediyoruz. 
-            //services.AddSingleton<IValidator<EducationVM>, EducationValidation>();
+                                                                            //services.AddSingleton<IValidator<EducationVM>, EducationValidation>();
             #endregion
+
+            //#region ajax
+            //services.AddControllers().AddNewtonsoftJson();
+            //services.AddControllersWithViews().AddNewtonsoftJson();
+            //services.AddRazorPages().AddNewtonsoftJson();
+            //#endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

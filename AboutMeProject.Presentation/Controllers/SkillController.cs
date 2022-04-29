@@ -53,29 +53,29 @@ namespace AboutMeProject.Presentation.Controllers
             return View(skill);
        
         }
-        //[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> DeleteSkill(int id)
         {
             if (id != 0)
             {
                 var result = await _skillService.DeleteAsync(id);
-                //if (result)
-                //{
-                //    return Json(new ToastViewModel
-                //    {
-                //        Message = "Deleted.",
-                //        Success = true
-                //    });
-                //}
-                //else
-                //{
-                //    return Json(new ToastViewModel
-                //    {
-                //        Message = "Operation Failed.",
-                //        Success = false
-                //    });
-                //}
-                return RedirectToAction("GetList");
+                if (result)
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Deleted.",
+                        Success = true
+                    });
+                }
+                else
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Operation Failed.",
+                        Success = false
+                    });
+                }
+                //return RedirectToAction("GetList");
 
             }
             return View();

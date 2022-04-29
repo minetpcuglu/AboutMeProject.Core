@@ -40,13 +40,13 @@
                         </div>
                     </div>
                 </td>
-                @*<td>
+                <td>
                     <button type="button" class="btn btn-danger "
                             onclick="Delete(@item.Id)">
                         Delete
                     </button>
-                </td>*@
-                <td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>
+                </td>
+                @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
                 <td><a href="/Hobby/UpdateHobby/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
 
             </tr>
@@ -57,6 +57,6 @@
 </div>
 
 
-@*@section scripts{
+@section scripts{
     <script type="text/javascript" src="~/Skill.js"></script>
-}*@
+}
