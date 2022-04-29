@@ -81,5 +81,33 @@ namespace AboutMeProject.Presentation.Controllers
             return View();
         
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateSkill(int id)
+        {
+            var value = await _skillService.GetById(id);
+            return View(value);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSkill(SkillDTO skillDTO)
+        {
+
+
+            var validateResult = _skillValidator.Validate(skillDTO);
+            if (validateResult.IsValid)
+            {
+                await _skillService.Update(skillDTO);
+                return RedirectToAction("GetList");
+            }
+            else
+            {
+                foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View(skillDTO);
+
+        }
     }
 }

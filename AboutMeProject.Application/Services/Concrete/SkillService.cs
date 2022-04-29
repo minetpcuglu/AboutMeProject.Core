@@ -59,9 +59,10 @@ namespace AboutMeProject.Application.Services.Concrete
             return list;
         }
 
-        public Task<SkillDTO> GetById(int id)
+        public async Task<SkillDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var skill = await _unitOfWork.SkillRepository.GetById(id);
+            return _mapper.Map<SkillDTO>(skill);
         }
 
         public async Task Update(SkillDTO t)
