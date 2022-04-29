@@ -13,5 +13,6 @@ namespace AboutMeProject.Application.Services.Interface
         Task<T> GetById(int id);
         Task Update(T t);
         Task<bool> Delete(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

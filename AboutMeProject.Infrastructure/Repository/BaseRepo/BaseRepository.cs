@@ -90,11 +90,27 @@ namespace AboutMeProject.Infrastructure.Repository.BaseRepo
             if (orderby != null) return await orderby(query).Select(selector).ToListAsync();
             else return await query.Select(selector).ToListAsync();
         }
-   
+
+        public async Task<T> GetAsync2(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            query = query.Where(predicate);
+
+
+            if (includeProperties.Any()) //Eğer eklenen includePropertiler varsa
+            {
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            return await query.AsNoTracking().SingleOrDefaultAsync();
+        }
+
 
         public async Task Delete(T id)
         {
-       
             await Task.Run(() => { _context.Set<T>().Remove(id); });
         }
 

@@ -10,8 +10,10 @@ namespace AboutMeProject.Domain.Entities.Interface
    public interface IBaseEntity
     {
         DateTime CreateDate { get; set; }
-        DateTime? ModifiedDate { get; set; }
-        DateTime? DeleteDate { get; set; }
-        Status Status { get; set; }
+        bool IsActive { get; set; }
+        bool IsDeleted { get; set; }
+        //DateTime? ModifiedDate { get; set; }
+        //DateTime? DeleteDate { get; set; }
+        //Status Status { get; set; }
     }
 }

@@ -34,6 +34,11 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<PortfolioDTO>> GetAll()
         {
             var portfolioList = await _unitOfWork.PortfolioRepository.GetAll();

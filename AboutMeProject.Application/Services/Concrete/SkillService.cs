@@ -28,19 +28,33 @@ namespace AboutMeProject.Application.Services.Concrete
         public async Task Add(SkillDTO t)
         {
             var addSkill = _mapper.Map<SkillDTO, Skill>(t);
+            addSkill.IsActive = true;
+            addSkill.IsDeleted = false;
             await _unitOfWork.SkillRepository.Insert(addSkill);
             await _unitOfWork.Commit();
         }
 
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<bool> Delete(int id)
+        //{
+        //    if (id != 0)
+        //    {
+        //        var deleteSkill = await _unitOfWork.SkillRepository.Get(x => x.Id == id);
+        //        deleteSkill.IsActive = false;
+        //        deleteSkill.IsDeleted = true;
+        //        await _unitOfWork.SkillRepository.Delete(deleteSkill);
+
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public async Task<List<SkillDTO>> GetAll()
         {
-            var skillList = await _unitOfWork.SkillRepository.GetAll();
-            var list = _mapper.Map<List<SkillDTO>>(skillList);
+            var skillList = await _unitOfWork.SkillRepository.GetListAll(x => x.IsActive == true);
+            var list = _mapper.Map<List<SkillDTO>>(skillList);         
             await _unitOfWork.Commit();
             return list;
         }
@@ -50,7 +64,36 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public Task Update(SkillDTO t)
+        public async Task Update(SkillDTO t)
+        {
+            var aboutUpdate = _mapper.Map<SkillDTO,Skill>(t);
+
+            if (aboutUpdate.Id != 0)
+            {
+                aboutUpdate.IsActive = true;
+                aboutUpdate.IsDeleted = false;
+                await _skillRepository.Update(aboutUpdate);
+                await _unitOfWork.SaveChangesAsync();
+            }
+        }
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var result = await _unitOfWork.SkillRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
+            {
+                var person = await _unitOfWork.SkillRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
+
+                await _unitOfWork.SkillRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }

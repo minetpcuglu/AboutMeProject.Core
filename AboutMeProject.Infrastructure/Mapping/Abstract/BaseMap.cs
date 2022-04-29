@@ -14,9 +14,9 @@ namespace AboutMeProject.Infrastructure.Mapping.Interface
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder.Property(x => x.CreateDate).IsRequired(true);
-            builder.Property(x => x.ModifiedDate).IsRequired(false);
-            builder.Property(x => x.DeleteDate).IsRequired(false);
-            builder.Property(x => x.Status).IsRequired(true);
+            //builder.Property(x => x.ModifiedDate).IsRequired(false);
+            //builder.Property(x => x.DeleteDate).IsRequired(false);
+            //builder.Property(x => x.Status).IsRequired(true);
         }
     }
 }

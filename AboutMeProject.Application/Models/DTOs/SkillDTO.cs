@@ -10,6 +10,8 @@ namespace AboutMeProject.Application.Models.DTOs
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public bool IsActive { get; set; } = true;
+        public string IsDeleted { get; set; } 
         public string Value { get; set; }
     }
 }

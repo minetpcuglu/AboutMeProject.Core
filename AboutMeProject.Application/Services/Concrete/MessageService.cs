@@ -38,6 +38,11 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<MessageDTO>> GetAll()
         {
             throw new NotImplementedException();

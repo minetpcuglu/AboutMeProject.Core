@@ -16,5 +16,6 @@ namespace AboutMeProject.Application.Models.DTOs
         public string Mail { get; set; }
         public string Adress { get; set; }
         public string ImageUrl { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

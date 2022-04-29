@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Domain.Repository.Interface
 {
     // Repository: Temel olarak veritabanı sorgulama işlemlerinin bir merkezsen yapılmasını sağlayarak iş katmamına bu işlererin taşınmasını önler bu şekilde sorgu ve kod tekrarını engelleriz.
+
+
     public interface IBaseRepository<T> where T : IBaseEntity
     {
 
@@ -38,6 +40,7 @@ namespace AboutMeProject.Domain.Repository.Interface
                                                      bool disableTracking = true);
 
         Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        Task<T> GetAsync2(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetById(int id);
     }
 }

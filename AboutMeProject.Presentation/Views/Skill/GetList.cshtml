@@ -23,34 +23,40 @@
         <tbody class="list">
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td class="budget">
-                        @item.Title
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <span class="completion mr-2">@item.Value %</span>
-                            <div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
-                                </div>
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td class="budget">
+                    @item.Title
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span class="completion mr-2">@item.Value %</span>
+                        <div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger "
-                                onclick="Delete(@item.Id)">
-                            Delete
-                        </button>
-                    </td>
-                    <td><a href="/Hobby/UpdateHobby/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+                    </div>
+                </td>
+                @*<td>
+                    <button type="button" class="btn btn-danger "
+                            onclick="Delete(@item.Id)">
+                        Delete
+                    </button>
+                </td>*@
+                <td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>
+                <td><a href="/Hobby/UpdateHobby/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
 
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
     <a href="/Skill/AddSkill/" class="btn btn-primary">New Add Skill</a>
 </div>
+
+
+@*@section scripts{
+    <script type="text/javascript" src="~/Skill.js"></script>
+}*@

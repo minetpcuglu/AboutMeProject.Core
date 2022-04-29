@@ -29,6 +29,8 @@ namespace AboutMeProject.Application.Services.Concrete
         {
 
             var addAbout = _mapper.Map<AboutDTO, About>(aboutDTO);
+            addAbout.IsActive = true;
+            addAbout.IsDeleted = false;
             await _unitOfWork.AboutRepository.Insert(addAbout);
             await _unitOfWork.Commit();
         }
@@ -38,7 +40,9 @@ namespace AboutMeProject.Application.Services.Concrete
             if (id != 0)
             {
                 var deleteAbout = await _unitOfWork.AboutRepository.Get(x => x.Id == id);
-               await _unitOfWork.AboutRepository.Delete(deleteAbout);
+                deleteAbout.IsActive = false;
+                deleteAbout.IsDeleted = true;
+                await _unitOfWork.AboutRepository.Delete(deleteAbout);
 
                 return true;
             }
@@ -46,6 +50,11 @@ namespace AboutMeProject.Application.Services.Concrete
             {
                 return false;
             }
+        }
+
+        public Task<bool> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<AboutDTO>> GetAll()
@@ -70,6 +79,8 @@ namespace AboutMeProject.Application.Services.Concrete
 
             if (aboutUpdate.Id != 0)
             {
+                aboutUpdate.IsActive = true;
+                aboutUpdate.IsDeleted = false;
                 await _aboutRepository.Update(aboutUpdate);
                 await _unitOfWork.SaveChangesAsync();
             }
