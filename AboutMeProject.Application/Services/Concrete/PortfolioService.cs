@@ -41,7 +41,8 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<List<PortfolioDTO>> GetAll()
         {
-            var portfolioList = await _unitOfWork.PortfolioRepository.GetAll();
+        
+            var portfolioList = await _unitOfWork.PortfolioRepository.GetListAll(x=>x.IsActive==true);
             var list = _mapper.Map<List<PortfolioDTO>>(portfolioList);
             await _unitOfWork.Commit();
             return list;

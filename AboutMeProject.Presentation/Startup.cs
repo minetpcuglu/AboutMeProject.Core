@@ -64,6 +64,7 @@ namespace AboutMeProject.Presentation
             #region FluentValidation
             services.AddSingleton<IValidator<SkillDTO>, SkillValidation>(); // constructor injection kullanacaðýmýz için Validator sýnýfýmýzý ve servisimizi inject ediyoruz. 
             services.AddSingleton<IValidator<EducationDTO>, EducationValidation>();
+            services.AddSingleton<IValidator<PortfolioDTO>, PortfolioValidation>();
             #endregion
 
 
