@@ -3,24 +3,24 @@ Created : 24.04.2022
 
 Domain-driven design (DDD) Architecture Gitbook : (https://mine-topcuoglu.gitbook.io/ddd-architecture/)
 
-Unit Of  Work Design Pattern
+Unit Of  Work Design Pattern Gitbook :(https://mine-topcuoglu.gitbook.io/unit-of-work/)
 
-Generic Repository
+Generic Repository Gitbook : (https://mine-topcuoglu.gitbook.io/design-pattern/)
 
 Fluent Validation
 
-Auto Mapper
+Auto Mapper Gitbook: (https://mine-topcuoglu.gitbook.io/viewmodel-and-dto-and-automapper/)
 
 Fluent Api Gitbook : (https://mine-topcuoglu.gitbook.io/mapping-islemleri/)
 
-ORM(Entity Framework)
+ORM(Entity Framework) Gitbook : (https://mine-topcuoglu.gitbook.io/orm-object-relational-mapping/)
 
-Ef - Code First
+Ef - Code First  Gitbook 
 
-Autofac
+Autofac  Gitbook :(https://mine-topcuoglu.gitbook.io/ioc-yapilanmasi/)
 
-Ajax
+Ajax Gitbook :(https://mine-topcuoglu.gitbook.io/ajax-asynchronous-javascript-and-xml/)
 
-Toastr Notification
+Toastr Notification 
 
 
