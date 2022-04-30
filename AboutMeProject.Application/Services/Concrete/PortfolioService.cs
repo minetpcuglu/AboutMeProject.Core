@@ -71,9 +71,17 @@ namespace AboutMeProject.Application.Services.Concrete
             return _mapper.Map<PortfolioDTO>(port);
         }
 
-        public Task Update(PortfolioDTO t)
+        public async Task Update(PortfolioDTO t)
         {
-            throw new NotImplementedException();
+            var portfolioUpdate = _mapper.Map<PortfolioDTO, Portfolio>(t);
+
+            if (portfolioUpdate.Id != 0)
+            {
+                portfolioUpdate.IsActive = true;
+                portfolioUpdate.IsDeleted = false;
+                await _portfolioRepository.Update(portfolioUpdate);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }

@@ -1,0 +1,54 @@
+﻿@model PortfolioDTO
+@{
+    ViewData["Title"] = "UpdatePortfolio";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form method="post" asp-controller="Portfolio" asp-action="UpdatePortfolio">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" name="PortfolioId" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="Name"><b> Project Name: </b>  </label>
+                <input asp-for="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"><b>Price: </b>  </label>
+                <input asp-for="Price" class="form-control" value="@Model.Price" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Value"><b>Completed Value: </b>  </label>
+                <input asp-for="Value" class="form-control" value="@Model.Value" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"> <b>Image URL:</b></label>
+                <input asp-for="ImageUrl" id="txtValue" type="text" class="form-control" value="@Model.ImageUrl" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl2"> <b>Image URL:</b></label>
+                <input asp-for="ImageUrl2" id="txtValue" type="text" class="form-control" value="@Model.ImageUrl2" />
+                <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+            </div>
+            <label asp-for="ProjectUrl"> <b>Project Url:</b></label>
+            <input asp-for="ProjectUrl" id="txtValue" type="text" class="form-control" value="@Model.ProjectUrl" />
+            <span asp-validation-for="ProjectUrl" class="text-danger"></span>
+            <br />
+            <br />
+
+            <button type="submit" class="btn btn-primary">Update</button>
+
+        </div>
+        <br />
+    </div>
+</form>
+

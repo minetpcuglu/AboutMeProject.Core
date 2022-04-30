@@ -85,11 +85,31 @@ namespace AboutMeProject.Presentation.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> UpdateSkill(int id)
-        //{
-        //    var value = await _skillService.GetById(id);
-        //    return View(value);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> UpdatePortfolio(int id)
+        {
+            var value = await _portfolioService.GetById(id);
+            return View(value);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdatePortfolio(PortfolioDTO portfolioDTO)
+        {
+
+
+            var validateResult = _portfolioValidator.Validate(portfolioDTO);
+            if (validateResult.IsValid)
+            {
+                await _portfolioService.Update(portfolioDTO);
+                return RedirectToAction("GetList");
+            }
+            else
+            {
+                foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+
+            return View(portfolioDTO);
+
+        }
     }
 }
