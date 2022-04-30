@@ -39,9 +39,21 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.PortfolioRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
+            {
+                var person = await _unitOfWork.PortfolioRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
+
+                await _unitOfWork.PortfolioRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<List<PortfolioDTO>> GetAll()
@@ -53,9 +65,10 @@ namespace AboutMeProject.Application.Services.Concrete
             return list;
         }
 
-        public Task<PortfolioDTO> GetById(int id)
+        public async Task<PortfolioDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var port = await _unitOfWork.PortfolioRepository.GetById(id);
+            return _mapper.Map<PortfolioDTO>(port);
         }
 
         public Task Update(PortfolioDTO t)

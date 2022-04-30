@@ -17,9 +17,9 @@
                             <th scope="col" class="sort" data-sort="name">Project</th>
                             <th scope="col" class="sort" data-sort="budget">Fee</th>
                             <th scope="col" class="sort" data-sort="status">Status</th>
-                            <th scope="col">Images</th>
-                            <th scope="col" class="sort" data-sort="completion">#</th>
-                            <th scope="col"></th>
+                            <th scope="col" class="sort" data-sort="status">Value</th>
+                            <th scope="col" class="sort">Delete</th>
+                            <th scope="col" class="sort">Update</th>
                         </tr>
                     </thead>
                     <tbody class="list">
@@ -37,7 +37,7 @@
                                     </div>
                                 </th>
                                 <td class="budget">
-                                    @item.Price
+                                    $ @item.Price USD
                                 </td>
                                 <td>
                                     <span class="badge badge-dot mr-4">
@@ -45,22 +45,22 @@
                                         <span class="status">Completed</span>
                                     </span>
                                 </td>
-                                <td>
-                                    <div class="avatar-group">
-                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                                            <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-1.jpg">
-                                        </a>
-                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                                            <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-2.jpg">
-                                        </a>
-                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                                            <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-3.jpg">
-                                        </a>
-                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                                            <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-4.jpg">
-                                        </a>
-                                    </div>
-                                </td>
+                                @*<td>
+                                        <div class="avatar-group">
+                                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                                                <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-1.jpg">
+                                            </a>
+                                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
+                                                <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-2.jpg">
+                                            </a>
+                                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
+                                                <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-3.jpg">
+                                            </a>
+                                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
+                                                <img alt="Image placeholder" src="~/argon-dashboard-master/assets/img/theme/team-4.jpg">
+                                            </a>
+                                        </div>
+                                    </td>*@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <span class="completion mr-2">@item.Value%</span>
@@ -71,18 +71,17 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <td>
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="Deletes(@item.Id)">
+                                        Delete
+                                    </button>
+                                  
+
                                 </td>
+                              
+                                <td><a href="/Skill/UpdateSkill/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+
                             </tr>
                         }
                     </tbody>
@@ -96,7 +95,7 @@
 
 
 @section scripts{
-    <script type="text/javascript" src="~/Person.js"></script>
+    <script type="text/javascript" src="~/Deletejs/Portfolio.js"></script>
 }
 
 

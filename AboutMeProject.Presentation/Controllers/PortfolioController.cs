@@ -1,4 +1,5 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -53,5 +54,42 @@ namespace AboutMeProject.Presentation.Controllers
             return View(portfolio);
 
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PortfolioDelete(int id)
+        {
+            if (id != 0)
+            {
+                var result = await _portfolioService.DeleteAsync(id);
+                if (result)
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Deleted.",
+                        Success = true
+                    });
+                }
+                else
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Operation Failed.",
+                        Success = false
+                    });
+                }
+                //return RedirectToAction("GetList");
+
+            }
+            return View();
+
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> UpdateSkill(int id)
+        //{
+        //    var value = await _skillService.GetById(id);
+        //    return View(value);
+        //}
     }
 }
