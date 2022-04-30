@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -24,9 +25,13 @@ namespace AboutMeProject.Application.Services.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task Add(PortfolioDTO t)
+        public async Task Add(PortfolioDTO t)
         {
-            throw new NotImplementedException();
+            var addPortfolio = _mapper.Map<PortfolioDTO, Portfolio>(t);
+            addPortfolio.IsActive = true;
+            addPortfolio.IsDeleted = false;
+            await _unitOfWork.PortfolioRepository.Insert(addPortfolio);
+            await _unitOfWork.Commit();
         }
 
         public Task<bool> Delete(int id)
