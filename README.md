@@ -1,7 +1,7 @@
 # AboutMeProject.Core
 Created : 24.04.2022
 
-Domain-driven design (DDD) Architecture
+Domain-driven design (DDD) Architecture Gitbook : (https://mine-topcuoglu.gitbook.io/ddd-architecture/)
 
 Unit Of  Work Design Pattern
 
@@ -11,7 +11,7 @@ Fluent Validation
 
 Auto Mapper
 
-Fluent Api
+Fluent Api Gitbook : (https://mine-topcuoglu.gitbook.io/mapping-islemleri/)
 
 ORM(Entity Framework)
 
