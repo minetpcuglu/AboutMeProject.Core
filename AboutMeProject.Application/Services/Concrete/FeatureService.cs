@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -47,14 +48,23 @@ namespace AboutMeProject.Application.Services.Concrete
             return list;
         }
 
-        public Task<FeatureDTO> GetById(int id)
+        public async Task<FeatureDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var port = await _unitOfWork.FeatureRepository.GetById(id);
+            return _mapper.Map<FeatureDTO>(port);
         }
 
-        public Task Update(FeatureDTO t)
+        public async Task Update(FeatureDTO t)
         {
-            throw new NotImplementedException();
+            var Update = _mapper.Map<FeatureDTO, Feature>(t);
+
+            if (Update.Id != 0)
+            {
+                Update.IsActive = true;
+                Update.IsDeleted = false;
+                await _featureRepository.Update(Update);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }

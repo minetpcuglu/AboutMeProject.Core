@@ -39,7 +39,7 @@ namespace AboutMeProject.Presentation.Controllers
             if (validateResult.IsValid)
             {
                 await _featureService.Update(featureDTO);
-                return RedirectToAction("List","Default");
+                return RedirectToAction("Index","Default");
             }
             else
             {
