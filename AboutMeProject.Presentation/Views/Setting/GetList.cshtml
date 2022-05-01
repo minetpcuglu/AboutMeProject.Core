@@ -1,0 +1,57 @@
+﻿@model List<ServiceDTO>
+@{
+    ViewData["Title"] = "GetList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-header border-0">
+    <h3 class="mb-0">Service List table</h3>
+</div>
+<!-- Light table -->
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="sort" data-sort="name">#</th>
+                <th scope="col" class="sort" data-sort="budget">Title</th>
+                <th scope="col" class="sort" data-sort="status">Image</th>
+                <th scope="col">Delete</th>
+                <th scope="col" class="sort" data-sort="completion">Update</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td class="budget">
+                        @item.Title
+                    </td>
+                    <td>
+                        <div class="avatar-group">
+                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Title">
+                                <img alt="Image placeholder" src="@item.ImageUrl">
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger "
+                                onclick="Delete(@item.Id)">
+                            Delete
+                        </button>
+                    </td>
+                    @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
+                    <td><a href="/Setting/UpdateSetting/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Education/AddEducation/" class="btn btn-primary">New Add Service</a>
+</div>
+
+

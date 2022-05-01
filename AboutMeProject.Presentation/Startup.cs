@@ -67,6 +67,7 @@ namespace AboutMeProject.Presentation
             services.AddSingleton<IValidator<PortfolioDTO>, PortfolioValidation>();
             services.AddSingleton<IValidator<FeatureDTO>, FeatureValidation>();
             services.AddSingleton<IValidator<AboutDTO>, AboutValidation>();
+            services.AddSingleton<IValidator<ServiceDTO>, SettingValidation>();
             #endregion
 
 

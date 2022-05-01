@@ -24,6 +24,11 @@ namespace AboutMeProject.Presentation.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> GetList()
+        {
+            var value = await _settingService.GetAll();
+            return View(value);
+        }
 
         [HttpGet]
         public async Task<IActionResult> UpdateSetting(int id)
@@ -33,7 +38,7 @@ namespace AboutMeProject.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateAbout(ServiceDTO serviceDTO)
+        public async Task<IActionResult> UpdateSetting(ServiceDTO serviceDTO)
         {
             var validateResult = _settingValidator.Validate(serviceDTO);
             if (validateResult.IsValid)
