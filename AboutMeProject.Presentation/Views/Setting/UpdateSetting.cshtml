@@ -1,0 +1,32 @@
+﻿@model ServiceDTO
+@{
+    ViewData["Title"] = "UpdateSetting";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form method="post" asp-controller="Setting" asp-action="UpdateSetting">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" name="SettingId" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="Title"><b> Title: </b>  </label>
+                <input asp-for="Title" class="form-control" value="@Model.Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"><b>Image: </b>  </label>
+                <input asp-for="ImageUrl" class="form-control" value="@Model.ImageUrl" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+
+        </div>
+        <br />
+    </div>
+</form>
+
+

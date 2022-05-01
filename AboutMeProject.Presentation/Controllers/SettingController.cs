@@ -44,7 +44,7 @@ namespace AboutMeProject.Presentation.Controllers
             if (validateResult.IsValid)
             {
                 await _settingService.Update(serviceDTO);
-                return RedirectToAction("Index", "Default");
+                return RedirectToAction("GetList");
             }
             else
             {
