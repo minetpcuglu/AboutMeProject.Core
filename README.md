@@ -23,4 +23,6 @@ Ajax Gitbook :(https://mine-topcuoglu.gitbook.io/ajax-asynchronous-javascript-an
 
 Toastr Notification 
 
+Ling Query 
+
 
