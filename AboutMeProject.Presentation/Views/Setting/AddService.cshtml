@@ -1,0 +1,33 @@
+﻿@model ServiceDTO
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div class="card-header border-0">
+    <h3 class="mb-0">Add New Service</h3>
+</div>
+<form method="post" asp-controller="Setting" asp-action="AddService">
+    <div>
+        <div>
+            <br />
+            <br />
+            <label asp-for="Title"> <b>Title:</b></label>
+            <input asp-for="Title" id="txtSkill" type="text" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+
+            <br />
+            <label asp-for="ImageUrl"> <b>Image URL:</b></label>
+            <input asp-for="ImageUrl" id="txtValue" type="text" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
+            <br />
+
+        </div>
+    </div>
+    <br>
+    <button type="submit" href="/Setting/AddService/" class="btn btn-outline-success"><b>Add Service</b></button>
+
+    <br />
+</form>
