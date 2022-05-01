@@ -78,5 +78,11 @@ namespace AboutMeProject.Application.Services.Concrete
 
             return false;
         }
+        public async Task<int> GetTotelSkill()
+        {
+            var query = _skillRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
     }
 }

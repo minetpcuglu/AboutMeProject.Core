@@ -71,6 +71,13 @@ namespace AboutMeProject.Application.Services.Concrete
             return _mapper.Map<PortfolioDTO>(port);
         }
 
+        public async Task<int> GetTotelPortfolio()
+        {
+            var query = _portfolioRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
+
         public async Task Update(PortfolioDTO t)
         {
             var portfolioUpdate = _mapper.Map<PortfolioDTO, Portfolio>(t);

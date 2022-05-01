@@ -29,11 +29,7 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
@@ -54,6 +50,13 @@ namespace AboutMeProject.Application.Services.Concrete
             return _mapper.Map<FeatureDTO>(port);
         }
 
+        public async Task<int> GetTotelFeature()
+        {
+            var query =  _featureRepository.GetQueryable().Where(x => x.IsActive==true).ToList().Count();
+
+            return query;
+        }
+
         public async Task Update(FeatureDTO t)
         {
             var Update = _mapper.Map<FeatureDTO, Feature>(t);
@@ -66,5 +69,7 @@ namespace AboutMeProject.Application.Services.Concrete
                 await _unitOfWork.SaveChangesAsync();
             }
         }
+
+      
     }
 }

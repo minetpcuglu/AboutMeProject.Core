@@ -9,5 +9,6 @@ namespace AboutMeProject.Application.Services.Interface
 {
    public interface IPortfolioService : IGenericService<PortfolioDTO>
     {
+        public Task<int> GetTotelPortfolio();
     }
 }

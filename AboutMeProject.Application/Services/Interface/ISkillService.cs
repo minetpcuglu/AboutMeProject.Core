@@ -9,5 +9,6 @@ namespace AboutMeProject.Application.Services.Interface
 {
    public interface ISkillService : IGenericService<SkillDTO>
     {
+        public Task<int> GetTotelSkill();
     }
 }

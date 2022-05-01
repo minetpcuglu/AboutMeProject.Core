@@ -9,5 +9,7 @@ namespace AboutMeProject.Application.Services.Interface
 {
    public interface IFeatureService : IGenericService<FeatureDTO>
     {
+       public Task<int> GetTotelFeature();
+       
     }
 }

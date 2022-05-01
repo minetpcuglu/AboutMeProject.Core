@@ -10,16 +10,26 @@ namespace AboutMeProject.Presentation.ViewComponents.Dashboard
     public class FeatureStatistic : ViewComponent
     {
         private readonly IFeatureService _featureService;
-    
-        public FeatureStatistic(IFeatureService featureService)
+        private readonly ISkillService _skillService;
+        private readonly IMessageService _messageService;
+        private readonly IPortfolioService _portfolioService;
+        private readonly IEducationService _educationService;
+
+        public FeatureStatistic(IFeatureService featureService, ISkillService skillService, IMessageService messageService, IPortfolioService portfolioService, IEducationService educationService)
         {
-         
             _featureService = featureService;
+            _skillService = skillService;
+            _messageService = messageService;
+            _portfolioService = portfolioService;
+            _educationService = educationService;
         }
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var value = await _featureService.GetAll();
-            return View(value);
+            ViewBag.FeatureCount= await _featureService.GetTotelFeature();
+            ViewBag.SkillCount= await _skillService.GetTotelSkill();
+            ViewBag.PortfolioCount = await _portfolioService.GetTotelPortfolio();
+            return View();
         }
     }
 }
