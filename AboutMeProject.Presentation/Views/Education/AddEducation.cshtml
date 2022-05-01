@@ -1,44 +1,60 @@
 ﻿@model EducationDTO
 @{
     ViewData["Title"] = "AddEducation";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 
 <br />
 <div class="card-header border-0">
     <h3 class="mb-0">Add New Education</h3>
 </div>
-<form method="post" asp-controller="Education" asp-action="AddEducation">
-    <div>
-        <div>
-            <br />
-            <br />
-            <label asp-for="SchollName"> <b>Scholl Name:</b></label>
-            <input asp-for="SchollName" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="SchollName" class="text-danger"></span>
 
-            <br />
-            <label asp-for="Section"> <b>Section:</b></label>
-            <input asp-for="Section" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="Section" class="text-danger"></span>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
 
-            <br />
-            <label asp-for="NoteAvarage"> <b>Note Avarage:</b></label>
-            <input asp-for="NoteAvarage" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="NoteAvarage" class="text-danger"></span>
+            <p class="card-description"> Add New Education  </p>
 
-            <br />
-            <label asp-for="Date"> <b>Date:</b></label>
-            <input asp-for="Date" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="Date" class="text-danger"></span>
+            <form class="forms-sample" method="post" asp-controller="Education" asp-action="AddEducation">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="SchollName"><b> Scholl Name: </b>  </label>
+                    <input asp-for="SchollName" class="form-control"  />
+                    <span asp-validation-for="SchollName" class="text-danger"></span>
 
-            <br />
-           
+                </div>
+                <div class="form-group">
+                    <label asp-for="Section"><b>Section: </b>  </label>
+                    <input asp-for="Section" class="form-control" />
+                    <span asp-validation-for="Section" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="NoteAvarage"><b>Note Avarage: </b>  </label>
+                    <input asp-for="NoteAvarage" class="form-control" />
+                    <span asp-validation-for="NoteAvarage" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Section"><b>Section: </b>  </label>
+                    <input asp-for="Section" class="form-control" />
+                    <span asp-validation-for="Section" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date"><b>Date: </b>  </label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+
+                </div>
+
+                <br />
+        
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+            </form>
         </div>
     </div>
-    <br>
-    <button type="submit" id="btnSaveEducation" name="SaveEducation" value="Save Education" href="/Education/AddEducation/" class="btn btn-outline-success"><b>Add Education</b></button>
-    <br />
-</form>
+</div>
 
 

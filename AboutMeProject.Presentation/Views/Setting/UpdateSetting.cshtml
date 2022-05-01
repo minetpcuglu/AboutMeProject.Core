@@ -12,6 +12,7 @@
 
             <form class="forms-sample" method="post" asp-controller="Setting" asp-action="UpdateSetting">
                 <div asp-validation-summary="All"></div>
+                <input type="hidden" name="EducationId" value="@Model.Id" />
                 <div class="form-group">
                     <label for="exampleInputName1">Title</label>
                     <input type="text" class="form-control" id="exampleInputName1" name="Title" value="@Model.Title">

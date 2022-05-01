@@ -1,55 +1,57 @@
 ﻿@model PortfolioDTO
 @{
     ViewData["Title"] = "AddPortfolio";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
 
-<div class="card-header border-0">
-    <h3 class="mb-0">Add New Portfolio</h3>
-</div>
-<form method="post" asp-controller="Portfolio" asp-action="AddPortfolio">
-    <div>
-        <div>
-            <br />
-            <br />
-            <label asp-for="Name"> <b>Project Name:</b></label>
-            <input asp-for="Name" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-            <br />
-            <label asp-for="Price"> <b>Project Price:</b></label>
-            <input asp-for="Price" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
-            <br />
-            <label asp-for="Value"> <b>Completed Value:</b></label>
-            <input asp-for="Value" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="Value" class="text-danger"></span>
-            <br />
-            <label asp-for="ImageUrl"> <b>Image URL:</b></label>
-            <input asp-for="ImageUrl" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <p class="card-description"> Add New Portfolio  </p>
+            <form class="forms-sample" method="post" asp-controller="Portfolio" asp-action="AddPortfolio">
+                <div>
+                    <div>
+                        <br />
+                        <br />
+                        <label asp-for="Name"> <b>Project Name:</b></label>
+                        <input asp-for="Name" id="txtSkill" type="text" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Price"> <b>Project Price:</b></label>
+                        <input asp-for="Price" id="txtSkill" type="text" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Value"> <b>Completed Value:</b></label>
+                        <input asp-for="Value" id="txtSkill" type="text" class="form-control" />
+                        <span asp-validation-for="Value" class="text-danger"></span>
+                        <br />
+                        <label asp-for="ImageUrl"> <b>Image URL:</b></label>
+                        <input asp-for="ImageUrl" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
 
-            <br />
-            <label asp-for="ImageUrl2"> <b>Image URL 2:</b></label>
-            <input asp-for="ImageUrl2" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+                        <br />
+                        <label asp-for="ImageUrl2"> <b>Image URL 2:</b></label>
+                        <input asp-for="ImageUrl2" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="ImageUrl2" class="text-danger"></span>
 
-            <br />
-            <label asp-for="ProjectUrl"> <b>Project URL:</b></label>
-            <input asp-for="ProjectUrl" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+                        <br />
+                        <label asp-for="ProjectUrl"> <b>Project URL:</b></label>
+                        <input asp-for="ProjectUrl" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="ImageUrl2" class="text-danger"></span>
 
-            <br />
+                        <br />
 
 
-            <br />
+                        <br />
 
+                    </div>
+                </div>
+                <br>
+                <button type="submit" id="btnSavePortfolio" name="SavePortfolio" value="Save Portfolio" href="/Portfolio/AddPortfolio/" class="btn btn-outline-success"><b>Add Porfolio</b></button>
+                <br />
+            </form>
         </div>
     </div>
-    <br>
-    <button type="submit" id="btnSavePortfolio" name="SavePortfolio" value="Save Portfolio" href="/Portfolio/AddPortfolio/" class="btn btn-outline-success"><b>Add Porfolio</b></button>
-    <br />
-</form>
-
-
+</div>
 
