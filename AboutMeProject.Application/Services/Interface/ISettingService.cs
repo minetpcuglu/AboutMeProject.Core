@@ -9,5 +9,6 @@ namespace AboutMeProject.Application.Services.Interface
 {
    public interface ISettingService : IGenericService<ServiceDTO>
     {
+        public Task<int> GetTotelSetting();
     }
 }

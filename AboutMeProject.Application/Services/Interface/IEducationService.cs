@@ -9,5 +9,6 @@ namespace AboutMeProject.Application.Services.Interface
 {
     public interface IEducationService : IGenericService<EducationDTO>
     {
+        public Task<int> GetTotelEducation();
     }
 }

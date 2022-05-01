@@ -66,6 +66,13 @@ namespace AboutMeProject.Application.Services.Concrete
             return _mapper.Map<ServiceDTO>(service);
         }
 
+        public async Task<int> GetTotelSetting()
+        {
+            var query = _settingRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
+
         public async Task Update(ServiceDTO t)
         {
             var Update = _mapper.Map<ServiceDTO, Service>(t);

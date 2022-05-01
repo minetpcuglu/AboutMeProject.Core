@@ -66,6 +66,13 @@ namespace AboutMeProject.Application.Services.Concrete
             return _mapper.Map<EducationDTO>(education);
         }
 
+        public async Task<int> GetTotelEducation()
+        {
+            var query = _educationRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
+
         public async Task Update(EducationDTO t)
         {
 
