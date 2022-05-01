@@ -1,32 +1,36 @@
 ﻿@model SkillDTO
 @{
     ViewData["Title"] = "AddSkill";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 <br />
-<div class="card-header border-0">
-    <h3 class="mb-0">Add New Skill</h3>
-</div>
-<form method="post" asp-controller="Skill" asp-action="AddSkill">
-    <div>
-        <div>
-            <br />
-            <br />
-            <label asp-for="Title"> <b>Skill:</b></label>
-            <input asp-for="Title" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
 
-            <br />
-            <label asp-for="Value"> <b>Value:</b></label>
-            <input asp-for="Value" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="Value" class="text-danger"></span>
+            <p class="card-description"> Add New Skill  </p>
 
-            <br />
+            <form class="forms-sample" method="post" asp-controller="Skill" asp-action="AddSkill">
+                <div>
+                    <div>
+                        <br />
+                        <br />
+                        <label asp-for="Title"> <b>Skill:</b></label>
+                        <input asp-for="Title" id="txtSkill" type="text" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+
+                        <br />
+                        <label asp-for="Value"> <b>Value:</b></label>
+                        <input asp-for="Value" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="Value" class="text-danger"></span>
+
+                        <br />
+                    </div>
+                </div>
+                <br>
+                <button type="submit" id="btnSaveSkill" name="SaveSkill" value="Save Skill" href="/Skill/AddSkill/" class="btn btn-outline-success"><b>Add Skill</b></button>
+                <br />
+            </form>
         </div>
     </div>
-    <br>
-    <button type="submit" id="btnSaveSkill" name="SaveSkill" value="Save Skill" href="/Skill/AddSkill/" class="btn btn-outline-success"><b>Add Skill</b></button>
-    <br />
-</form>
-
-
+</div>
