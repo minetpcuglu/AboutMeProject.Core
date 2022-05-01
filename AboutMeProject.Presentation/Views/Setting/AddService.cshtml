@@ -1,33 +1,45 @@
 ﻿@model ServiceDTO
 @{
     ViewData["Title"] = "AddService";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 
-<br />
-<div class="card-header border-0">
-    <h3 class="mb-0">Add New Service</h3>
-</div>
-<form method="post" asp-controller="Setting" asp-action="AddService">
-    <div>
-        <div>
-            <br />
-            <br />
-            <label asp-for="Title"> <b>Title:</b></label>
-            <input asp-for="Title" id="txtSkill" type="text" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
 
-            <br />
-            <label asp-for="ImageUrl"> <b>Image URL:</b></label>
-            <input asp-for="ImageUrl" id="txtValue" type="text" class="form-control" />
-            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
 
-            <br />
+            <p class="card-description"> Add New Service  </p>
 
+            <form class="forms-sample" method="post" asp-controller="Setting" asp-action="AddService">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Title</label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="Title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Image</label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="ImageUrl">
+                </div>
+                @*<div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" name="ImageUrl" disabled placeholder="Upload Image">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        <label for="exampleTextarea1">Textarea</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                    </div>*@
+                <br />
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+            </form>
         </div>
     </div>
-    <br>
-    <button type="submit" href="/Setting/AddService/" class="btn btn-outline-success"><b>Add Service</b></button>
-
-    <br />
-</form>
+</div>

@@ -1,58 +1,64 @@
 ﻿@model List<ServiceDTO>
 @{
     ViewData["Title"] = "GetList";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Setting List</h4>
+                <p class="card-description">
+                    Setting <code>.table</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
 
-<div class="card-header border-0">
-    <h3 class="mb-0">Service List table</h3>
-</div>
-<!-- Light table -->
-<div class="table-responsive">
-    <table class="table align-items-center table-flush">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col" class="sort" data-sort="name">#</th>
-                <th scope="col" class="sort" data-sort="budget">Title</th>
-                <th scope="col" class="sort" data-sort="status">Image</th>
-                <th scope="col">Delete</th>
-                <th scope="col" class="sort" data-sort="completion">Update</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody class="list">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td class="budget">
-                        @item.Title
-                    </td>
-                    <td>
-                        <div class="avatar-group">
-                            <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Title">
-                                <img alt="Image placeholder" src="@item.ImageUrl">
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger "
-                                onclick="Delete(@item.Id)">
-                            Delete
-                        </button>
-                    </td>
-                    @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
-                    <td><a href="/Setting/UpdateSetting/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
 
-                </tr>
-            }
-        </tbody>
-    </table>
-    <a href="/Setting/AddService/" class="btn btn-primary">New Add Service</a>
-</div>
+                                <tr>
+                                    <td>@item.Id</td>
+
+                                    <td>@item.Title</td>
+                                    <td class="py-1">
+                                        <img src="@item.ImageUrl" alt="image" />
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger "
+                                                onclick="Delete(@item.Id)">
+                                            Delete
+                                        </button>
+                                    </td>
+                                    @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
+                                    <td><a href="/Setting/UpdateSetting/@item.Id" class="btn btn-warning"> <b>Update</b></a></td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                      
+
+                    </table>
+                    <br />
+                    <a href="/Setting/AddService/" class="btn btn-primary">New Add Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 @section scripts{

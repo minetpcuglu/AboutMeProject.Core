@@ -1,32 +1,46 @@
 ﻿@model ServiceDTO
 @{
     ViewData["Title"] = "UpdateSetting";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
 }
 
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
 
-<form method="post" asp-controller="Setting" asp-action="UpdateSetting">
-    <div class="row">
-        <div class="col-md-12">
-            <div asp-validation-summary="All"></div>
-            <input type="hidden" name="SettingId" value="@Model.Id" />
-            <div class="form-group">
-                <label asp-for="Title"><b> Title: </b>  </label>
-                <input asp-for="Title" class="form-control" value="@Model.Title" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+            <p class="card-description"> Update New Service  </p>
 
+            <form class="forms-sample" method="post" asp-controller="Setting" asp-action="UpdateSetting">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Title</label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="Title" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Image</label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="ImageUrl" value="@Model.ImageUrl">
+                </div>
+                @*<div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="img[]" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" name="ImageUrl" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl"><b>Image: </b>  </label>
-                <input asp-for="ImageUrl" class="form-control" value="@Model.ImageUrl" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>*@
 
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-
+                @*<div class="form-group">
+            <label for="exampleTextarea1">Textarea</label>
+            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+        </div>*@
+                <br />
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+            </form>
         </div>
-        <br />
     </div>
-</form>
+</div>
 
 
