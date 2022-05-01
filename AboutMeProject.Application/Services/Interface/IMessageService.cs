@@ -9,5 +9,7 @@ namespace AboutMeProject.Application.Services.Interface
 {
    public interface IMessageService : IGenericService<MessageDTO>
     {
+        public Task<int> GetTotelReadMessage();
+        public Task<int> GetTotelNotReadMessage();
     }
 }

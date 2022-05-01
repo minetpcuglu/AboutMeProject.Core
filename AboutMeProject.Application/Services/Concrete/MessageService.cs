@@ -33,10 +33,7 @@ namespace AboutMeProject.Application.Services.Concrete
            
         }
 
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public Task<bool> DeleteAsync(int id)
         {
@@ -51,6 +48,19 @@ namespace AboutMeProject.Application.Services.Concrete
         public Task<MessageDTO> GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<int> GetTotelReadMessage() //okunmus
+        {
+            var query = _messageRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
+        public async Task<int> GetTotelNotReadMessage() //okunmamıs
+        {
+            var query = _messageRepository.GetQueryable().Where(x => x.IsActive == false).ToList().Count();
+
+            return query;
         }
 
         public Task Update(MessageDTO t)

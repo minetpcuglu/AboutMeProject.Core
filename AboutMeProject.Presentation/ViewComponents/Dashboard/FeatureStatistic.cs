@@ -29,6 +29,8 @@ namespace AboutMeProject.Presentation.ViewComponents.Dashboard
             ViewBag.FeatureCount= await _featureService.GetTotelFeature();
             ViewBag.SkillCount= await _skillService.GetTotelSkill();
             ViewBag.PortfolioCount = await _portfolioService.GetTotelPortfolio();
+            ViewBag.ReadMessageCount = await _messageService.GetTotelReadMessage();
+            ViewBag.NotReadMessageCount = await _messageService.GetTotelNotReadMessage();
             return View();
         }
     }
