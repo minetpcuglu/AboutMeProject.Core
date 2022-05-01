@@ -1,4 +1,5 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
@@ -76,6 +77,28 @@ namespace AboutMeProject.Application.Services.Concrete
             var query = _portfolioRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
 
             return query;
+        }
+
+        public async Task<List<Last5ProjectVM>> Last5Project()
+        {
+
+            var contact = _portfolioRepository.GetQueryable().ToList();
+
+            var result = contact.GroupBy(x => x.Name).ToList().Take(5);
+            List<Last5ProjectVM> listModel = new List<Last5ProjectVM>();
+
+            foreach (var item in result)
+            {
+                var newModel = new Last5ProjectVM();
+                newModel.ProjectName= item.Key;
+                newModel.TotalPrice = item.Key;
+                newModel.TotalProject = item.Count();
+                listModel.Add(newModel);
+            }
+
+            var list = listModel.OrderByDescending(x =>x.ProjectName).ToList();
+
+            return list;
         }
 
         public async Task Update(PortfolioDTO t)
