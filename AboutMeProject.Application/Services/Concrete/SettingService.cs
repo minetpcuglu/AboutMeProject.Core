@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -23,15 +24,16 @@ namespace AboutMeProject.Application.Services.Concrete
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-        public Task Add(ServiceDTO t)
+        public async Task Add(ServiceDTO t)
         {
-            throw new NotImplementedException();
+            var add = _mapper.Map<ServiceDTO, Service>(t);
+            add.IsActive = true;
+            add.IsDeleted = false;
+            await _unitOfWork.SettingRepository.Insert(add);
+            await _unitOfWork.Commit();
         }
 
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public Task<bool> DeleteAsync(int id)
         {
@@ -40,20 +42,29 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<List<ServiceDTO>> GetAll()
         {
-            var settingList = await _unitOfWork.SettingRepository.GetAll();
+            var settingList = await _unitOfWork.SettingRepository.GetListAll(x => x.IsActive == true);
             var list = _mapper.Map<List<ServiceDTO>>(settingList);
             await _unitOfWork.Commit();
             return list;
         }
 
-        public Task<ServiceDTO> GetById(int id)
+        public async Task<ServiceDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var service = await _unitOfWork.SettingRepository.GetById(id);
+            return _mapper.Map<ServiceDTO>(service);
         }
 
-        public Task Update(ServiceDTO t)
+        public async Task Update(ServiceDTO t)
         {
-            throw new NotImplementedException();
+            var Update = _mapper.Map<ServiceDTO, Service>(t);
+
+            if (Update.Id != 0)
+            {
+               Update.IsActive = true;
+                Update.IsDeleted = false;
+                await _settingRepository.Update(Update);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }
