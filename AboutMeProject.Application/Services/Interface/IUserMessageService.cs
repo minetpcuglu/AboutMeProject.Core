@@ -10,5 +10,6 @@ namespace AboutMeProject.Application.Services.Interface
    public interface IUserMessageService : IGenericService<UserMessageDTO>
     {
         Task<List<UserMessageDTO>> GetByIdUserMessage(int userId);
+        Task<List<UserMessageDTO>> GetByIdUserMessageList();
     }
 }

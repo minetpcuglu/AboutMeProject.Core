@@ -70,6 +70,26 @@ namespace AboutMeProject.Application.Services.Concrete
             return null;
         }
 
+        public async Task<List<UserMessageDTO>> GetByIdUserMessageList()
+        {
+            var messageList = await _userMessageRepository.GetFilteredList(
+                     selector: x => new UserMessageDTO
+                     {
+                         Id = x.Id,
+                         Content = x.Content,
+                         Title = x.Title,
+
+
+                         UserId = x.User.Id,
+                         UserName = x.User.UserName
+                     },
+                     //expression: x => x.UserId && x.IsActive == true,
+                     inculude: x => x.Include(x => x.User)
+                     //thenInculude: x => x.Include(x=>x.User)
+                     );
+            return messageList;
+        }
+
         public Task Update(UserMessageDTO t)
         {
             throw new NotImplementedException();
