@@ -1,0 +1,56 @@
+﻿@model List<UserMessageDTO>
+@{
+    Layout = null;
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>
+                        @Model.Select(x => x.UserName).FirstOrDefault()
+                    </h2>
+                   
+                    <div class="form-group row">
+                        @*<input type="text" asp-for="FullName" id="name" class="form-control" name="FullName">*@
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Mail Adress</th>
+                                    <th>Phone Number</th>
+                                    <th>City</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Content
+                                        </td>
+                                        <td>
+                                            @item.Title
+                                        </td>
+                                        <td>
+                                            @item.UserName
+                                        </td>
+                                        @*<td>
+                                            <a asp-controller="ContactInfo" asp-action="Update" asp-route-id="@item.PersonId" class="btn btn-outline-secondary btn-sm">Güncelle</a>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="Delete(@item.Id)">Sil</button>
+                                        </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

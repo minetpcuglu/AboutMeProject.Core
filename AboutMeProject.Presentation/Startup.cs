@@ -47,7 +47,9 @@ namespace AboutMeProject.Presentation
             services.AddScoped<IContactService, ContactService>(); /// dý 
             services.AddScoped<IPortfolioService, PortfolioService>(); /// dý 
             services.AddScoped<IEducationService, EducationService>(); /// dý 
+            services.AddScoped<IUserMessageService, UserMessageService>(); /// dý 
             services.AddScoped<IMessageService, MessageService>(); /// dý 
+            services.AddScoped<IUserService, UserService>(); /// dý 
 
             #endregion
             #region Automapper

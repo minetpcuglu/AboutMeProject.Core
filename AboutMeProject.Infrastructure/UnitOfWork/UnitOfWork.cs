@@ -50,6 +50,17 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return settingRepository;
             }
         }
+
+        private IUserRepository userRepository;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (userRepository == null) userRepository = new UserRepository(_db);
+                return userRepository;
+            }
+        }
+
         private IContactRepository contactRepository;
         public IContactRepository ContactRepository
         {
@@ -78,6 +89,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
             {
                 if (messageRepository == null) messageRepository = new MessageRepository(_db);
                 return messageRepository;
+            }
+        }
+        private IUserMessageRepository usermessageRepository;
+        public IUserMessageRepository UserMessageRepository
+        {
+            get
+            {
+                if (usermessageRepository == null) usermessageRepository = new UserMessageRepository(_db);
+                return usermessageRepository;
             }
         }
         private IPortfolioRepository portfolioRepository;

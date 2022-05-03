@@ -30,10 +30,8 @@ namespace AboutMeProject.Application.Services.Concrete
             var addMessage = _mapper.Map<MessageDTO, Message>(t);
             await _unitOfWork.MessageRepository.Insert(addMessage);
             await _unitOfWork.Commit();
-           
-        }
 
-      
+        }
 
         public Task<bool> DeleteAsync(int id)
         {

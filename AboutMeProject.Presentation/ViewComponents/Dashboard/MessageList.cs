@@ -18,7 +18,7 @@ namespace AboutMeProject.Presentation.ViewComponents.Dashboard
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var value = await _messageService.GetAll();
+            var value = await _messageService.GetTotelReadMessage();
 
             return View(value);
         }

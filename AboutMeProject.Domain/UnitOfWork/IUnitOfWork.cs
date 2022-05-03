@@ -10,8 +10,10 @@ namespace AboutMeProject.Domain.UnitOfWork
    public interface IUnitOfWork : IAsyncDisposable
     {
         IAboutRepository AboutRepository { get; }
+        IUserRepository UserRepository { get; }
         IPortfolioRepository PortfolioRepository { get; }
         IMessageRepository MessageRepository { get; }
+        IUserMessageRepository UserMessageRepository { get; }
         IContactRepository ContactRepository { get; }
         IEducationRepository EducationRepository { get; }
         IFeatureRepository FeatureRepository { get; }

@@ -16,8 +16,10 @@ namespace AboutMeProject.Application.Utilities.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AboutRepository>().As<IAboutRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserMessageRepository>().As<IUserMessageRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EducationRepository>().As<IEducationRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PortfolioRepository>().As<IPortfolioRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerLifetimeScope();
