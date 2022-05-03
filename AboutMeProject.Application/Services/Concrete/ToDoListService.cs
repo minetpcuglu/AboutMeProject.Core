@@ -17,6 +17,13 @@ namespace AboutMeProject.Application.Services.Concrete
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
+        public ToDoListService(IToDoListRepository todolistRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        {
+            _todolistRepository = todolistRepository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+        }
+
         public Task Add(ToDoListDTO t)
         {
             throw new NotImplementedException();

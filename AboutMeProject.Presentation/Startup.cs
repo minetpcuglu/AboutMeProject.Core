@@ -56,6 +56,7 @@ namespace AboutMeProject.Presentation
             #region Automapper
             services.AddAutoMapper(typeof(AboutMapping));
             services.AddAutoMapper(typeof(FeatureMapping));
+            services.AddAutoMapper(typeof(ToDoListMapping));
             services.AddAutoMapper(typeof(SettingMapping));
             services.AddAutoMapper(typeof(SkillMapping));
             services.AddAutoMapper(typeof(ContactMapping));
