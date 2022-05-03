@@ -78,7 +78,8 @@ namespace AboutMeProject.Application.Services.Concrete
                          Id = x.Id,
                          Content = x.Content,
                          Title = x.Title,
-
+                         Image = x.User.ImageUrl,
+                         Date =x.Date,
 
                          UserId = x.User.Id,
                          UserName = x.User.UserName
