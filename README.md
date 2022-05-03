@@ -25,4 +25,7 @@ Toastr Notification
 
 Ling Query 
 
+Entity Framework Core Include Methods  -- Partial Views  -- View Components
+
+
 
