@@ -41,6 +41,7 @@ namespace AboutMeProject.Presentation
 
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
+            services.AddScoped<IToDoListService, ToDoListService>(); /// dý 
             services.AddScoped<IFeatureService, FeatureService>(); /// dý 
             services.AddScoped<ISettingService, SettingService>(); /// dý 
             services.AddScoped<ISkillService, SkillService>(); /// dý 
