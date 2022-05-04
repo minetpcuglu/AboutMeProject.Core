@@ -33,6 +33,14 @@ namespace AboutMeProject.Application.Services.Concrete
 
         }
 
+        public async Task<SignInResult> Login(LoginViewModel loginVM)
+        {
+            var user = await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, loginVM.Persistent, loginVM.Lock);
+            return user;
+        
+        }
+
+
         public async Task<IdentityResult> Register(RegisterViewModel appUserView)
         {
             var user = _mapper.Map<AppUser>(appUserView);
