@@ -6,26 +6,16 @@
 <body>
             <!-- partial -->
     <div class="main-panel">
-        @*<div class="content-wrapper">*@
-
         @await Component.InvokeAsync("FeatureStatistic")
         <div class="row">
             @await Component.InvokeAsync("Last5Project")
         </div>
         @await Component.InvokeAsync("DashboardStatistic")
         @await Component.InvokeAsync("DashboardStatistic2")
-      
-
     <div class="row">
         @await Component.InvokeAsync("UserMessageList")
         @await Component.InvokeAsync("PortfolioListSlide")
         @await Component.InvokeAsync("ToDoList")
-       
-       
     </div>
-
-     
     </div>
-                <!-- content-wrapper ends -->
-
 </body>
