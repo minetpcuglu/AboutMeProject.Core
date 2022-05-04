@@ -1,5 +1,4 @@
-﻿using AboutMeProject.Domain.Entities.Interface;
-using AboutMeProject.Domain.Enums;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +7,13 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Domain.Entities.Concrete
 {
-   public  class BaseEntity<T> : IBaseEntity
+   public class AppUser : IdentityUser<int>
     {
-        public T Id { get; set; }
+        public int Id { get; set; }
 
         private DateTime _createDate = DateTime.Now;
         public DateTime CreateDate { get => _createDate; set => value = _createDate; }
         public virtual bool IsActive { get; set; } = true;
         public virtual bool IsDeleted { get; set; } = false;
-
-        //public DateTime? ModifiedDate { get; set; }
-        //public DateTime? DeleteDate { get; set; }
-
-        //private Status _status = Status.Active;
-        //public Status Status { get => _status; set => value = _status; }
-
     }
 }
