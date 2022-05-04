@@ -40,6 +40,15 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return featureRepository;
             }
         }
+        private IAppUserRepository appUserRepository;
+        public IAppUserRepository AppUserRepository
+        {
+            get
+            {
+                if (appUserRepository == null) appUserRepository = new AppUserRepository(_db);
+                return appUserRepository;
+            }
+        }
         private IToDoListRepository todolistRepository;
         public IToDoListRepository ToDoListRepository
         {

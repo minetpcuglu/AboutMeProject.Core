@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AboutMeProject.Application.Models.VMs;
+using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,35 +14,53 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
     [Area("User")]
     public class RegisterController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IMapper _mapper;
+        readonly SignInManager<AppUser> _signInManager; //siteme authentice olma
+
+        private readonly IAppUserService _appUser;
+
+        public RegisterController(UserManager<AppUser> userManager, IMapper mapper, IAppUserService appUser, SignInManager<AppUser> signInManager)
+        {
+            _mapper = mapper;
+            _userManager = userManager;
+            _appUser = appUser;
+            _signInManager = signInManager;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
         //[AllowAnonymous]
-      
-        public IActionResult Register()
+
+        public IActionResult RegisterUser()
         {
             //if (User.Identity.IsAuthenticated) return RedirectToAction(nameof(HomeController.Index), "Home");
             return View();
         }
 
         [HttpPost/*, AllowAnonymous*/]
-        public async Task<IActionResult> Register(/*RegisterDTO registerDTO*/ string p)
+        public async Task<IActionResult> RegisterUser(RegisterViewModel registerVM)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var result = await _userServeice.Register(registerDTO);
+            if (ModelState.IsValid)
+            {
+                var appUser = _mapper.Map<RegisterViewModel, AppUser>(registerVM);
+                //AppUser appUser = new AppUser
+                //{
+                //    UserName = appUserViewModel.UserName,
+                //    Email = appUserViewModel.Email
+                //};
+                IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password); //identity kendi kütüphanesi create
+                if (result.Succeeded)
+                    return RedirectToAction("Index","Dashboard");
+                else
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
 
-            //    if (result.Succeeded) return RedirectToAction("Index", "Home");
-
-            //    foreach (var item in result.Errors) ModelState.AddModelError(string.Empty, item.Description);
-            //}
-
-            //return View(registerDTO);
+            }
             return View();
         }
-      
+
 
     }
 }

@@ -2,7 +2,9 @@ using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Concrete;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Application.Utilities.AutoMapper;
+using AboutMeProject.Application.Utilities.Validations.CustomValidation;
 using AboutMeProject.Application.Utilities.Validations.FluentValidation;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Infrastructure.Context;
 using AboutMeProject.Presentation.Controllers;
 using FluentValidation;
@@ -39,8 +41,30 @@ namespace AboutMeProject.Presentation
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //uygulamaya geliþtirdiðimiz context nesnesi DbContext olarak tanýtýlmaktadýr.
             #endregion
 
+            #region Identity ValidatorRules
+            services.AddIdentity<AppUser, AppRole>
+               (x =>
+               {
+                   x.Password.RequireNonAlphanumeric = false; //Alfanumerik zorunluluðunu kaldýrýyoruz.
+                   x.Password.RequireLowercase = false; //Küçük harf zorunluluðunu kaldýrýyoruz.
+                   x.Password.RequireUppercase = false; //Büyük harf zorunluluðunu kaldýrýyoruz.
+                   x.Password.RequireDigit = false; //0-9 arasý sayýsal karakter zorunluluðu 
+                   x.User.RequireUniqueEmail = false; //Email adreslerini tekilleþtiriyoruz.
+
+                   //x.User.AllowedUserNameCharacters = "abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789-._@+"; //Kullanýcý adýnda geçerli olan karakterleri belirtiyoruz.
+
+               }).AddPasswordValidator<CustomPasswordValidation>()
+         .AddUserValidator<CustomUserValidation>()
+         .AddErrorDescriber<CustomIdentityErrorDescriber>()
+         .AddEntityFrameworkStores<ApplicationDbContext>();//(þifremi unuttum!)  //identity yapýlanmasýna dair gerekli entegrasyonu “AddIdentity” metodu ile gerçekleþtirmekteyiz.
+
+            //böylece hem password hemde user temelli custom validasyon yapýlanmasý saðlanmýþ bulunmaktadýr.
+            #endregion
+
+
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
+            services.AddScoped<IAppUserService, AppUserService>(); /// dý 
             services.AddScoped<IToDoListService, ToDoListService>(); /// dý 
             services.AddScoped<IFeatureService, FeatureService>(); /// dý 
             services.AddScoped<ISettingService, SettingService>(); /// dý 
@@ -63,6 +87,7 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(PortfolioMapping));
             services.AddAutoMapper(typeof(EducationMapping));
             services.AddAutoMapper(typeof(MessageMapping));
+            services.AddAutoMapper(typeof(AppUserMapping));
             #endregion
 
             #region FluentValidation
