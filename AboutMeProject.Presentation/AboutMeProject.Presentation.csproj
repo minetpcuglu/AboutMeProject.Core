@@ -123,7 +123,6 @@
   <ItemGroup>
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="Views\Shared\PartialViews\UserLayoutPartialViews\" />
   </ItemGroup>
 
 </Project>
