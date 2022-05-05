@@ -28,6 +28,7 @@ namespace AboutMeProject.Infrastructure.Context
         public DbSet<User> Users { get; set; }
         public DbSet<UserMessage> userMessages { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
 
         // Şimdi yaptığımız Map'leme işlemini override edeceğiz.

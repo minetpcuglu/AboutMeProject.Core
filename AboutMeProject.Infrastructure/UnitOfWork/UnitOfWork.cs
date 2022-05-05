@@ -40,6 +40,16 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
                 return featureRepository;
             }
         }
+
+        private IAnnouncementRepository announcementRepository;
+        public IAnnouncementRepository AnnouncementRepository
+        {
+            get
+            {
+                if (announcementRepository == null) announcementRepository = new AnnouncementRepository(_db);
+                return announcementRepository;
+            }
+        }
         private IAppUserRepository appUserRepository;
         public IAppUserRepository AppUserRepository
         {

@@ -64,6 +64,7 @@ namespace AboutMeProject.Presentation
 
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
+            services.AddScoped<IAnnouncementService, AnnouncementService>(); /// dý 
             services.AddScoped<IAppUserService, AppUserService>(); /// dý 
             services.AddScoped<IToDoListService, ToDoListService>(); /// dý 
             services.AddScoped<IFeatureService, FeatureService>(); /// dý 
@@ -88,6 +89,7 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(EducationMapping));
             services.AddAutoMapper(typeof(MessageMapping));
             services.AddAutoMapper(typeof(AppUserMapping));
+            services.AddAutoMapper(typeof(AnnouncementMapping));
             #endregion
 
             #region FluentValidation
