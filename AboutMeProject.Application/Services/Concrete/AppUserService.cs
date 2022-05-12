@@ -4,11 +4,14 @@ using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace AboutMeProject.Application.Services.Concrete
 {
@@ -51,5 +54,78 @@ namespace AboutMeProject.Application.Services.Concrete
 
             return result;
         }
+
+        public async Task<EditProfileViewModel> GetById(int id)  //ikiside calısıyor
+        {
+            var user = await _unitOfWork.AppUserRepository.GetFilteredFirstOrDefault(
+                selector: x => new EditProfileViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    UserName = x.UserName,
+                    Surname = x.Surname,
+                    ImageUrl=x.ImageUrl,
+                },
+                expression: x => x.Id == id);
+
+            return user;
+        }
+
+        public async Task EditUser(EditProfileViewModel model)
+        {
+            var user = await _unitOfWork.AppUserRepository.GetById(model.Id);
+            if (user != null)
+            {
+                if (model.Image != null)
+                {
+                    using var image = Image.Load(model.Image.OpenReadStream());
+                    image.Mutate(x => x.Resize(256, 256));
+                    image.Save("wwwroot/images/users/" + user.UserName + ".jpg");
+                    user.ImageUrl = ("/images/users/" + user.UserName + ".jpg");
+                    await _unitOfWork.AppUserRepository.Update(user);
+                    await _unitOfWork.Commit();
+                }
+
+
+                if (model.UserName != user.UserName)
+                {
+                    var isUserNameExist = await _userManager.FindByNameAsync(model.UserName);
+
+                    if (isUserNameExist == null)
+                    {
+                        await _userManager.SetUserNameAsync(user, model.UserName);
+                        user.UserName = model.UserName;
+                        await _signInManager.SignInAsync(user, isPersistent: true);
+                    }
+                }
+                if (model.Name != user.Name)
+                {
+                    user.Name = model.Name;
+                    await _unitOfWork.AppUserRepository.Update(user);
+                    await _unitOfWork.Commit();
+                }
+                if (model.Surname != user.Surname)
+                {
+                    user.Surname = model.Surname;
+                    await _unitOfWork.AppUserRepository.Update(user);
+                    await _unitOfWork.Commit();
+                }
+
+                //if (model.Email != user.Email)
+                //{
+                //    var isEmailExist = await _userManager.FindByEmailAsync(model.Email);
+                //    if (isEmailExist == null)
+                //        await _userManager.SetEmailAsync(user, model.Email);
+                //}
+
+                if (model.Password != null)
+                {
+                    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                    await _userManager.UpdateAsync(user);
+                }
+
+            }
+        }
+
     }
 }

@@ -12,8 +12,8 @@ namespace AboutMeProject.Application.Services.Interface
     {
         Task<IdentityResult> Register(RegisterViewModel appUserView);
         Task<SignInResult> Login(LoginViewModel loginVM);
-        //Task EditUser(EditProfileViewModel editProfileViewModel);
-        //Task<EditProfileViewModel> GetById(int id);
+        Task EditUser(EditProfileViewModel editProfileViewModel);
+        Task<EditProfileViewModel> GetById(int id);
         //Task<EditProfileViewModel> GetUserName(string userName);
         //Task LogOut();
     }

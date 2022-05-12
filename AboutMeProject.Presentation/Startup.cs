@@ -37,7 +37,7 @@ namespace AboutMeProject.Presentation
             services.AddControllersWithViews();
 
             #region context
-            services.AddTransient<ApplicationDbContext>();
+            services.AddScoped<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //uygulamaya geliþtirdiðimiz context nesnesi DbContext olarak tanýtýlmaktadýr.
             #endregion
 
