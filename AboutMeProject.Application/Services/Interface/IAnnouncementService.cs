@@ -10,5 +10,6 @@ namespace AboutMeProject.Application.Services.Interface
    public interface IAnnouncementService : IGenericService<AnnouncementDTO>
     {
         public Task<int> GetTotelAnnouncoment();
+        public Task<List<Last5NotificationDTO>> Take5List();
     }
 }

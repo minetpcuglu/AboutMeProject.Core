@@ -62,6 +62,13 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
             else return RedirectToAction(nameof(DashboardController.Index), "Dashboard");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
+        {
+            await _appUser.LogOut();
+            return RedirectToAction(nameof(DashboardController.Index), "Dashboard");
+        }
+
 
 
 

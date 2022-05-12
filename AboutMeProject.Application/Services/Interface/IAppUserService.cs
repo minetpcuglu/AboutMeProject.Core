@@ -17,6 +17,8 @@ namespace AboutMeProject.Application.Services.Interface
 
         public Task<int> GetTotelUser();
 
+        Task LogOut();
+
 
         //Task<EditProfileViewModel> GetUserName(string userName);
         //Task LogOut();

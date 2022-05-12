@@ -54,6 +54,27 @@ namespace AboutMeProject.Application.Services.Concrete
             return query;
         }
 
+        public async Task<List<Last5NotificationDTO>> Take5List()
+        {
+            var contact = _announcementRepository.GetQueryable().ToList();
+
+            var result = contact.GroupBy(x => x.Title).ToList().Take(5);
+            List<Last5NotificationDTO> listModel = new List<Last5NotificationDTO>();
+
+            foreach (var item in result)
+            {
+                var newModel = new Last5NotificationDTO();
+                newModel.Title = item.Key;
+                newModel.TotalNotification= item.Count();
+                listModel.Add(newModel);
+            
+            }
+
+            var list =  listModel.OrderByDescending(x => x.TotalNotification).ToList();
+
+            return list;
+        }
+
         public Task Update(AnnouncementDTO t)
         {
             throw new NotImplementedException();

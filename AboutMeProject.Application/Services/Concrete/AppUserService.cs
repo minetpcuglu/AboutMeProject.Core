@@ -144,5 +144,10 @@ namespace AboutMeProject.Application.Services.Concrete
 
             return query;
         }
+        public async Task LogOut()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
     }
 }
