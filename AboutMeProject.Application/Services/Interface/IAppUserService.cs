@@ -14,6 +14,10 @@ namespace AboutMeProject.Application.Services.Interface
         Task<SignInResult> Login(LoginViewModel loginVM);
         Task EditUser(EditProfileViewModel editProfileViewModel);
         Task<EditProfileViewModel> GetById(int id);
+
+        public Task<int> GetTotelUser();
+
+
         //Task<EditProfileViewModel> GetUserName(string userName);
         //Task LogOut();
     }

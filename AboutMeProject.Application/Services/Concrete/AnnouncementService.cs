@@ -47,6 +47,13 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetTotelAnnouncoment()
+        {
+            var query =  _announcementRepository.GetQueryable().Where(x => x.IsActive == true).ToList().Count();
+
+            return query;
+        }
+
         public Task Update(AnnouncementDTO t)
         {
             throw new NotImplementedException();

@@ -1,6 +1,7 @@
 ﻿using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
+using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -17,30 +18,40 @@ namespace AboutMeProject.Application.Services.Concrete
 {
     public class AppUserService : IAppUserService
     {
+        private readonly IAppUserRepository _appUserRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-
-        public AppUserService(IUnitOfWork unitOfWork,
-                              IMapper mapper,
-                              UserManager<AppUser> userManager,
-                              SignInManager<AppUser> signInManager)
-
+        public AppUserService(IAppUserRepository appUserRepository, IUnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
-            this._unitOfWork = unitOfWork;
-            this._mapper = mapper;
-            this._userManager = userManager;
-            this._signInManager = signInManager;
-
+            _appUserRepository = appUserRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
+
+
+        //public AppUserService(IUnitOfWork unitOfWork,
+        //                      IMapper mapper,
+        //                      UserManager<AppUser> userManager,
+        //                      SignInManager<AppUser> signInManager)
+
+        //{
+        //    this._unitOfWork = unitOfWork;
+        //    this._mapper = mapper;
+        //    this._userManager = userManager;
+        //    this._signInManager = signInManager;
+
+        //}
 
         public async Task<SignInResult> Login(LoginViewModel loginVM)
         {
             var user = await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, loginVM.Persistent, loginVM.Lock);
             return user;
-        
+
         }
 
 
@@ -64,7 +75,7 @@ namespace AboutMeProject.Application.Services.Concrete
                     Name = x.Name,
                     UserName = x.UserName,
                     Surname = x.Surname,
-                    ImageUrl=x.ImageUrl,
+                    ImageUrl = x.ImageUrl,
                 },
                 expression: x => x.Id == id);
 
@@ -127,5 +138,11 @@ namespace AboutMeProject.Application.Services.Concrete
             }
         }
 
+        public async Task<int> GetTotelUser()
+        {
+            var query = _appUserRepository.GetQueryable().ToList().Count();
+
+            return query;
+        }
     }
 }
