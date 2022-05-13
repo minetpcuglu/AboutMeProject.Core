@@ -65,11 +65,9 @@ namespace AboutMeProject.Application.Services.Concrete
             {
                 var newModel = new Last5NotificationDTO();
                 newModel.Title = item.Key;
-                newModel.TotalNotification= item.Count();
+                newModel.TotalNotification = item.Count();
                 listModel.Add(newModel);
-            
             }
-
             var list =  listModel.OrderByDescending(x => x.TotalNotification).ToList();
 
             return list;
