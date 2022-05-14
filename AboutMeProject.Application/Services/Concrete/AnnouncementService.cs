@@ -65,6 +65,7 @@ namespace AboutMeProject.Application.Services.Concrete
             {
                 var newModel = new Last5NotificationDTO();
                 newModel.Title = item.Key;
+                newModel.Status = item.Key;
                 newModel.TotalNotification = item.Count();
                 listModel.Add(newModel);
             }
