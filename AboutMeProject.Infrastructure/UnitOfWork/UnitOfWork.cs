@@ -41,6 +41,16 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
             }
         }
 
+        private IMessageUserRepository messageUserRepository;
+        public IMessageUserRepository MessageUserRepository
+        {
+            get
+            {
+                if (messageUserRepository == null) messageUserRepository = new MessageUserRepository(_db);
+                return messageUserRepository;
+            }
+        }
+
         private IAnnouncementRepository announcementRepository;
         public IAnnouncementRepository AnnouncementRepository
         {

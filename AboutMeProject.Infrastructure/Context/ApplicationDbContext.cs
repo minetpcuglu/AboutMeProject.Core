@@ -29,6 +29,7 @@ namespace AboutMeProject.Infrastructure.Context
         public DbSet<UserMessage> userMessages { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<MessageUser> MessageUsers { get; set; }
 
 
         // Şimdi yaptığımız Map'leme işlemini override edeceğiz.
@@ -44,6 +45,7 @@ namespace AboutMeProject.Infrastructure.Context
             builder.ApplyConfiguration(new ServiceMap());
             builder.ApplyConfiguration(new SocialMediaMap());
             builder.ApplyConfiguration(new ContactMap());
+            builder.ApplyConfiguration(new MessageUserMap());
 
             base.OnModelCreating(builder);
         }

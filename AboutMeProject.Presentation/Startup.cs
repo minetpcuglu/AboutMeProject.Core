@@ -75,6 +75,7 @@ namespace AboutMeProject.Presentation
             services.AddScoped<IEducationService, EducationService>(); /// dý 
             services.AddScoped<IUserMessageService, UserMessageService>(); /// dý 
             services.AddScoped<IMessageService, MessageService>(); /// dý 
+            services.AddScoped<IMessageUserService, MessageUserService>(); /// dý 
             services.AddScoped<IUserService, UserService>(); /// dý 
 
             #endregion
@@ -88,6 +89,7 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(PortfolioMapping));
             services.AddAutoMapper(typeof(EducationMapping));
             services.AddAutoMapper(typeof(MessageMapping));
+            services.AddAutoMapper(typeof(MessageUserMapping));
             services.AddAutoMapper(typeof(AppUserMapping));
             services.AddAutoMapper(typeof(AnnouncementMapping));
             #endregion

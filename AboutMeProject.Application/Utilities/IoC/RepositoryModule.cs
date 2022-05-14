@@ -16,6 +16,7 @@ namespace AboutMeProject.Application.Utilities.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AboutRepository>().As<IAboutRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageUserRepository>().As<IMessageUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<AnnouncementRepository>().As<IAnnouncementRepository>().InstancePerLifetimeScope();
             builder.RegisterType<AppUserRepository>().As<IAppUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ToDoListRepository>().As<IToDoListRepository>().InstancePerLifetimeScope();
