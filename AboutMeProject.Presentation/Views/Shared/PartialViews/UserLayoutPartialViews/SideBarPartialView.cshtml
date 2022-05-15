@@ -6,16 +6,37 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        @await Component.InvokeAsync("SidebarUserId")
+
         <li class="nav-item">
             <a class="nav-link" href="~/skydash/pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">HomePage</span>
+                <span class="menu-title">Home Page</span>
             </a>
         </li>
+
+
+
         <li class="nav-item">
-            <a class="nav-link">
-                <i class="icon-mail menu-icon" href="/User/Message/Index/"></i>
-                <span class="menu-title">Messages</span>
+            <a class="nav-link"  href="/User/Message/InBox/">
+                <i class="ti-notepad menu-icon"></i>
+                <span class="menu-title">Receiver Messages</span>
+
+            </a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/User/Message/SendBox/">
+                <i class="icon-mail menu-icon" ></i>
+                <span class="menu-title">Sender Messages</span>
+
+            </a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="/User/Message/AddMessage/">
+                <i class="ti-pencil menu-icon"></i>
+                <span class="menu-title">New Create Message</span>
 
             </a>
 
@@ -27,7 +48,8 @@
 
             </a>
         </li>
-        @await Component.InvokeAsync("SidebarUserId")
+
+
 
         <li class="nav-item">
             <a class="nav-link" href="/User/Login/LogOut/">

@@ -29,8 +29,29 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         {
             var valueUser = await _userManager.FindByNameAsync(User.Identity.Name);
             user = valueUser.Email;
-            var messageList = await _messageuserService.GetAllFilter(user);
+            var messageList = await _messageuserService.GetListReceiverMessage(user);
             return View(messageList);
+        }
+        public async Task<IActionResult> SendBox(string user) //kullanıcıya ait gelen mesaj 
+        {
+            var valueUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            user = valueUser.Email;
+            var messageList = await _messageuserService.GetListSenderMessage(user);
+            return View(messageList);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SendBoxMessageDetail(int id)
+        {
+            var value = await _messageuserService.GetById(id);
+            return View(value);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> InBoxMessageDetail(int id)
+        {
+            var value = await _messageuserService.GetById(id);
+            return View(value);
         }
     }
 }

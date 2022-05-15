@@ -1,0 +1,23 @@
+﻿@model MessageUserDTO
+@{
+    ViewData["Title"] = "SendBoxMessageDetail";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+      <h2>SendBox Message Detail</h2>
+<br />
+<form class="form-group">
+    @Html.HiddenFor(x => x.Id)
+    <br />
+    @Html.Label("Sender Mail")
+    @Html.TextBoxFor(x => x.SenderMail, new { @class = "form-control" })
+    <br />
+    @Html.Label("Sender Name")
+    @Html.TextBoxFor(x => x.SenderName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Content")
+    @Html.TextAreaFor(x => x.MessageContent,10,3, new { @class = "form-control" })
+    <br />
+
+</form>

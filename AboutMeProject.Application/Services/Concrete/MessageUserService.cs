@@ -45,9 +45,22 @@ namespace AboutMeProject.Application.Services.Concrete
             return  _mapper.Map<List<MessageUserDTO>>(messageList);
         }
 
-        public Task<MessageUserDTO> GetById(int id)
+        public async Task<MessageUserDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var port = await _unitOfWork.MessageUserRepository.GetById(id);
+            return _mapper.Map<MessageUserDTO>(port);
+        }
+
+        public async Task<List<MessageUserDTO>> GetListReceiverMessage(string mail)
+        {
+            var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.ReceiverMail == mail);
+            return _mapper.Map<List<MessageUserDTO>>(messageList);
+        }
+
+        public async Task<List<MessageUserDTO>> GetListSenderMessage(string mail)
+        {
+            var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.SenderMail == mail);
+            return _mapper.Map<List<MessageUserDTO>>(messageList);
         }
 
         public Task Update(MessageUserDTO t)
