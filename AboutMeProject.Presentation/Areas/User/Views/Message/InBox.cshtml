@@ -1,0 +1,91 @@
+﻿@model List<MessageUserDTO>
+@{
+    ViewData["Title"] = "InBox";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@{ string color = "";}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">InBox</h4>
+            <p class="card-description">
+                Add class <code>.table-striped</code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Sender Mail
+                            </th>
+                            <th>
+                                Subject
+                            </th>
+                            <th>
+                                Content
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            @*<th>
+                                Details
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            //if (item.Status == "Project")
+                            //{
+                            //    color = "badge badge-success";
+                            //}
+                            //if (item.Status == "Identity")
+                            //{
+                            //    color = "badge badge-warning";
+                            //}
+                            //if (item.Status == "JWT")
+                            //{
+                            //    color = "badge badge-danger";
+                            //}
+                            //if (item.Status == "Student")
+                            //{
+                            //    color = "badge badge-info";
+                            //}
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.SenderMail
+                            </td>
+                            <td>
+                                @item.Subject
+                            </td>
+
+                            <td>
+                                @item.MessageContent
+                            </td>
+                            <td>
+                                @item.Date.ToShortDateString()
+                            </td>
+                            @*<td><label class="@color">@item.Status</label></td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: @item.Value%" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>*@
+                            @*<td><a href="#" class="btn bg-info">Detail</a></td>*@
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

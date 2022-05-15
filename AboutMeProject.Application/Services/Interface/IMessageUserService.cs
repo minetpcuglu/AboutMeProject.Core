@@ -9,5 +9,6 @@ namespace AboutMeProject.Application.Services.Interface
 {
     public interface IMessageUserService : IGenericService<MessageUserDTO>
     {
+        Task<List<MessageUserDTO>> GetAllFilter(string mail);
     }
 }

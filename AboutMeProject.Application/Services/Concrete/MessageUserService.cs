@@ -39,6 +39,12 @@ namespace AboutMeProject.Application.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public async Task<List<MessageUserDTO>> GetAllFilter(string mail)
+        {
+            var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.ReceiverMail==mail);
+            return  _mapper.Map<List<MessageUserDTO>>(messageList);
+        }
+
         public Task<MessageUserDTO> GetById(int id)
         {
             throw new NotImplementedException();
