@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Application.Utilities.IoC
 {
-   public class RepositoryModule: Module //UnitOfWork için bagımlılıklardan kurtulmak amacıyla IoC Containerlardan yardım almak 
+    public class RepositoryModule : Module //UnitOfWork için bagımlılıklardan kurtulmak amacıyla IoC Containerlardan yardım almak 
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -20,10 +20,10 @@ namespace AboutMeProject.Application.Utilities.IoC
             builder.RegisterType<AnnouncementRepository>().As<IAnnouncementRepository>().InstancePerLifetimeScope();
             builder.RegisterType<AppUserRepository>().As<IAppUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ToDoListRepository>().As<IToDoListRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
+          
             builder.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<UserMessageRepository>().As<IUserMessageRepository>().InstancePerLifetimeScope();
+     
             builder.RegisterType<EducationRepository>().As<IEducationRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PortfolioRepository>().As<IPortfolioRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerLifetimeScope();

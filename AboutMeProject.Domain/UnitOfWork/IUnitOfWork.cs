@@ -14,10 +14,8 @@ namespace AboutMeProject.Domain.UnitOfWork
         IAnnouncementRepository AnnouncementRepository { get; }
         IAppUserRepository AppUserRepository { get; }
         IToDoListRepository ToDoListRepository { get; }
-        IUserRepository UserRepository { get; }
         IPortfolioRepository PortfolioRepository { get; }
         IMessageRepository MessageRepository { get; }
-        IUserMessageRepository UserMessageRepository { get; }
         IContactRepository ContactRepository { get; }
         IEducationRepository EducationRepository { get; }
         IFeatureRepository FeatureRepository { get; }

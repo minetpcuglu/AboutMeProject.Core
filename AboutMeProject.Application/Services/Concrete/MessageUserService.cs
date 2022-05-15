@@ -1,5 +1,6 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
@@ -24,9 +25,14 @@ namespace AboutMeProject.Application.Services.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public Task Add(MessageUserDTO t)
+        public async Task Add(MessageUserDTO t)
         {
-            throw new NotImplementedException();
+            var addMessage = _mapper.Map<MessageUserDTO, MessageUser>(t);
+            addMessage.IsActive = true;
+            addMessage.IsDeleted = false;
+            addMessage.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            await _unitOfWork.MessageUserRepository.Insert(addMessage);
+            await _unitOfWork.Commit();
         }
 
         public Task<bool> DeleteAsync(int id)

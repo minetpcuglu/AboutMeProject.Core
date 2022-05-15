@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Application.Services.Interface;
+﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,23 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         {
             var value = await _messageuserService.GetById(id);
             return View(value);
+        }
+
+        public async Task<IActionResult> SendMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(MessageUserDTO messageUser)
+        {
+            var valueUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            string mail = valueUser.Email;
+            string name = valueUser.Name;
+            messageUser.SenderMail = mail;
+            messageUser.SenderName = name;
+            await _messageuserService.Add(messageUser);
+            return RedirectToAction("SendBox","Message","User");
         }
     }
 }

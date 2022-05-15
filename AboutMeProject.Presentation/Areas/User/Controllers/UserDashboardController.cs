@@ -13,12 +13,12 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
     public class UserDashboardController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IUserMessageService _messageService;
+        private readonly IMessageUserService _messageService;
         private readonly   IAnnouncementService  _announcemenntService;
         private readonly   IAppUserService  _appUserService;
         private readonly   ISkillService  _skillService;
 
-        public UserDashboardController(UserManager<AppUser> userManager, IUserMessageService messageService, IAnnouncementService announcemenntService, IAppUserService appUserService, ISkillService skillService)
+        public UserDashboardController(UserManager<AppUser> userManager, IMessageUserService messageService, IAnnouncementService announcemenntService, IAppUserService appUserService, ISkillService skillService)
         {
             _userManager = userManager;
             _messageService = messageService;
