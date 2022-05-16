@@ -13,12 +13,18 @@
 
             <p class="card-description"> Add New Message  </p>
 
-            <form class="forms-sample" method="post" >
+            <form class="forms-sample" method="post">
                 <div asp-validation-summary="All"></div>
                 <div class="form-group">
                     <label asp-for="ReceiverMail"><b> Receiver Mail: </b>  </label>
                     <input asp-for="ReceiverMail" class="form-control" />
                     <span asp-validation-for="ReceiverMail" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="ReceiverName"><b> Receiver Name Surname: </b>  </label>
+                    <input asp-for="ReceiverName" class="form-control" />
+                    <span asp-validation-for="ReceiverName" class="text-danger"></span>
 
                 </div>
                 <div class="form-group">

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     public class UserDashboardController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -38,6 +39,9 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
 
             var valueAppUser = await _appUserService.GetTotelUser();
             ViewBag.UserCount = valueAppUser;
+
+            var valueInboxCount = await _messageService.GetTotelMessage();
+            ViewBag.InboxCount = valueInboxCount;
 
             var valueSkill = await _skillService.GetTotelSkill();
             ViewBag.AbilityCount = valueSkill;

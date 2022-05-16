@@ -12,5 +12,6 @@ namespace AboutMeProject.Application.Services.Interface
         Task<List<MessageUserDTO>> GetAllFilter(string mail);
         Task<List<MessageUserDTO>> GetListSenderMessage(string mail);
         Task<List<MessageUserDTO>> GetListReceiverMessage(string mail);
+        public Task<int> GetTotelMessage();
     }
 }

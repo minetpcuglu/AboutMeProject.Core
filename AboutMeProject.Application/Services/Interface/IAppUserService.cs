@@ -16,6 +16,7 @@ namespace AboutMeProject.Application.Services.Interface
         Task<EditProfileViewModel> GetById(int id);
 
         public Task<int> GetTotelUser();
+       
 
         Task LogOut();
 

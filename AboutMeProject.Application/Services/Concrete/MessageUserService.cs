@@ -4,6 +4,7 @@ using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
 using AboutMeProject.Domain.UnitOfWork;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace AboutMeProject.Application.Services.Concrete
     public class MessageUserService : IMessageUserService
     {
         private readonly IMessageUserRepository _messageUserRepository;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
-        public MessageUserService(IMessageUserRepository messageUserRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public MessageUserService(IMessageUserRepository messageUserRepository, UserManager<AppUser> userManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _messageUserRepository = messageUserRepository;
+            _userManager = userManager;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
@@ -67,6 +70,13 @@ namespace AboutMeProject.Application.Services.Concrete
         {
             var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.SenderMail == mail);
             return _mapper.Map<List<MessageUserDTO>>(messageList);
+        }
+
+        public async Task<int> GetTotelMessage()
+        {
+            var query = _messageUserRepository.GetQueryable().ToList().Count();
+
+            return query;
         }
 
         public Task Update(MessageUserDTO t)

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/Profile")]
     public class ProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -27,6 +28,8 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
             _appUser = appUser;
         }
 
+       
+        [Route("EditProfile/{id}")]
         public async Task<IActionResult> EditProfile(int id)
         {
            
@@ -47,6 +50,7 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         }
 
         [HttpPost]
+        [Route("EditProfile/{id}")]
         public async Task<IActionResult> EditProfile(EditProfileViewModel model, IFormFile file)
         {
             //model.Image = file;

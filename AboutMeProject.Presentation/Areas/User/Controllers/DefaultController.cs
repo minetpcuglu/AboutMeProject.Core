@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     //[Authorize]
     public class DefaultController : Controller
     {

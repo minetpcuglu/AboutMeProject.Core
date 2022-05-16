@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     public class LoginController : Controller
     {
         readonly UserManager<AppUser> _userManager;
@@ -34,7 +35,7 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index","Dashboard");
+                return RedirectToAction("Index","UserDashboard");
             }
             //kullanıcının yetkisinin olmadığı sayfalara erişmeye  çalıştığında  direkt olarak “Login” actionına yönlendirecektir
             ViewData["ReturnUrl"] = returnUrl; //temt data kontrolu atandi
@@ -59,7 +60,7 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
-            else return RedirectToAction(nameof(DashboardController.Index), "Dashboard");
+            else return RedirectToAction(nameof(UserDashboardController.Index), "UserDashboard");
         }
 
         [HttpGet]

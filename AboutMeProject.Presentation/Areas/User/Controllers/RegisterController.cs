@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -53,7 +54,7 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
                 //};
                 IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password); //identity kendi kütüphanesi create
                 if (result.Succeeded)
-                    return RedirectToAction("Index","Dashboard");
+                    return RedirectToAction("UserLogin","Login");
                 else
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
 

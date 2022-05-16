@@ -18,6 +18,8 @@ namespace AboutMeProject.Application.Models.VMs
         [EmailAddress(ErrorMessage = "Lütfen email formatında bir değer belirtiniz...")]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
 
         [Required(ErrorMessage = "Lütfen şifreyi boş geçmeyiniz...")]
         [DataType(DataType.Password, ErrorMessage = "Lütfen şifreyi tüm kuralları göz önüne alarak giriniz...")]
