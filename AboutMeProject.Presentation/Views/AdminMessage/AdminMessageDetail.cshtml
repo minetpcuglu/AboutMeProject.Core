@@ -1,0 +1,48 @@
+﻿@model MessageUserDTO
+@{
+    ViewData["Title"] = "AdminMessageDetail";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" name="MessageId" value="@Model.Id" />
+
+            <div class="form-group">
+                <label asp-for="Subject"><b> Subject: </b>  </label>
+                <input asp-for="Subject" readonly class="form-control" value="@Model.Subject" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="MessageContent"><b>Content: </b>  </label>
+                <input asp-for="MessageContent" readonly class="form-control" value="@Model.MessageContent" />
+                <span asp-validation-for="MessageContent" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverName"><b>Receiver Name: </b>  </label>
+                <input asp-for="ReceiverName" readonly class="form-control" value="@Model.ReceiverName" />
+                <span asp-validation-for="ReceiverName" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="SenderName"><b>Sender Name: </b>  </label>
+                <input asp-for="SenderName" readonly class="form-control" value="@Model.SenderName" />
+                <span asp-validation-for="SenderName" class="text-danger"></span>
+
+            </div>
+
+
+            <br />
+            <a asp-action="AdminSendbox" class="btn btn-outline-behance">SendBox</a>
+            <a asp-action="AdminSendbox" class="btn btn-outline-warning">InBox</a>
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,65 @@
+﻿@model List<MessageUserDTO>
+@{
+    ViewData["Title"] = "AdminSendbox";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Admin Message List</h4>
+            <p class="card-description">
+                Admin Message <code>.table</code>
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Receiver Name</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Delete</th>
+                            <th>Detail</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td class="budget">
+                                    @item.ReceiverName
+                                </td>
+                                <td class="budget">
+                                    @item.Subject
+                                </td>
+                                <td class="budget">
+                                    @item.Date.ToShortDateString()
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="DeleteMessages(@item.Id)">
+                                        Delete
+                                    </button>
+                                </td>
+                                @*<td><a href="/Skill/DeleteSkill/@item.Id" class="btn btn-warning"> <b>DELETE</b></a></td>*@
+                                <td><a href="/AdminMessage/AdminMessageDetail/@item.Id" class="btn btn-warning"> <b>Detail</b></a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+
+                </table>
+                <br />
+
+            </div>
+        </div>
+    </div>
+</div>
