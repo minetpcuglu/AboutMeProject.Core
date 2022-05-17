@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Application.Services.Interface;
+﻿using AboutMeProject.Application.Models.VMs;
+using AboutMeProject.Application.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,35 @@ namespace AboutMeProject.Presentation.Controllers
         {
             var value = await _messageuserService.GetById(id);
             return View(value);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdminMessage(int id)
+        {
+            if (id != 0)
+            {
+                var result = await _messageuserService.DeleteAsync(id);
+                if (result)
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Deleted.",
+                        Success = true
+                    });
+                }
+                else
+                {
+                    return Json(new ToastViewModel
+                    {
+                        Message = "Operation Failed.",
+                        Success = false
+                    });
+                }
+
+
+            }
+            return View();
+
         }
 
 

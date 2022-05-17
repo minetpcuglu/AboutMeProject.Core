@@ -38,9 +38,21 @@ namespace AboutMeProject.Application.Services.Concrete
             await _unitOfWork.Commit();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.MessageUserRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
+            {
+                var person = await _unitOfWork.MessageUserRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
+
+                await _unitOfWork.MessageUserRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         public Task<List<MessageUserDTO>> GetAll()
