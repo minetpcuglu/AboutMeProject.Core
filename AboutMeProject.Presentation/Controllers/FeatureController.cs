@@ -23,6 +23,13 @@ namespace AboutMeProject.Presentation.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> GetList()
+        {
+            var value = await _featureService.GetAll();
+            return View(value);
+        }
+
         [HttpGet]
         public async Task<IActionResult> UpdateFeature(int id)
         {

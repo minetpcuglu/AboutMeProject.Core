@@ -24,6 +24,11 @@ namespace AboutMeProject.Presentation.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> GetList()
+        {
+            var value = await _aboutService.GetAll();
+            return View(value);
+        }
         [HttpGet]
         public async Task<IActionResult> UpdateAbout(int id)
         {
