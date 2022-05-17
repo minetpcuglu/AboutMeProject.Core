@@ -1,0 +1,44 @@
+﻿@model MessageDTO
+@{
+    ViewData["Title"] = "ContactMessageDetail";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body"> 
+                <div asp-validation-summary="All"></div>
+                <input type="hidden" name="MessageId" value="@Model.Id" />
+
+                <div class="form-group">
+                    <label asp-for="Name"><b>  Name: </b>  </label>
+                    <input asp-for="Name" readonly class="form-control" value="@Model.Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mail"><b>Mail: </b>  </label>
+                    <input asp-for="Mail" readonly class="form-control" value="@Model.Mail" />
+                    <span asp-validation-for="Mail" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"><b>Content: </b>  </label>
+                    <input asp-for="Content" readonly class="form-control" value="@Model.Content" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date"><b>Date: </b>  </label>
+                    <input asp-for="Date"  readonly class="form-control" value="@Model.Date" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+
+                </div>
+               
+
+                <br />
+              <a asp-action="GetList" class="btn btn-outline-behance">Contact Page</a>
+           
+        </div>
+    </div>
+</div>

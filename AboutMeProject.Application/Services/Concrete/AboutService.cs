@@ -65,8 +65,8 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<AboutDTO> GetById(int id)
         {
-            var hobby = await _unitOfWork.AboutRepository.GetById(id);
-            return _mapper.Map<AboutDTO>(hobby);
+            var about = await _unitOfWork.AboutRepository.GetById(id);
+            return _mapper.Map<AboutDTO>(about);
         }
 
         public async Task Update(AboutDTO aboutDTO)

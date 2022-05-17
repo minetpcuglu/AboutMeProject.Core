@@ -33,19 +33,35 @@ namespace AboutMeProject.Application.Services.Concrete
 
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.MessageRepository.AnyAsync(a => a.Id == id);
+            if (result == true)
+            {
+                var person = await _unitOfWork.MessageRepository.GetAsync2(a => a.Id == id);
+                person.IsDeleted = true;
+                person.IsActive = false;
+
+                await _unitOfWork.MessageRepository.Update(person);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
-        public Task<List<MessageDTO>> GetAll()
+        public async Task<List<MessageDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var List = await _unitOfWork.MessageRepository.GetListAll(x => x.IsActive == true);
+            var list = _mapper.Map<List<MessageDTO>>(List);
+            await _unitOfWork.Commit();
+            return list;
         }
 
-        public Task<MessageDTO> GetById(int id)
+        public async Task<MessageDTO> GetById(int id)
         {
-            throw new NotImplementedException();
+            var message = await _unitOfWork.MessageRepository.GetById(id);
+            return _mapper.Map<MessageDTO>(message);
         }
 
         public async Task<int> GetTotelReadMessage() //okunmus
