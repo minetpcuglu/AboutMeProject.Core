@@ -45,6 +45,7 @@ namespace AboutMeProject.Presentation.Controllers
             return View(value);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> DeleteAdminMessage(int id)
         {
