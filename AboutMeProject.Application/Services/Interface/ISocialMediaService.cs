@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Application.Services.Interface
 {
-   public interface  ISocialMediaService : IGenericService<AboutDTO>
+   public interface  ISocialMediaService : IGenericService<SocialMediaDTO>
     {
     }
 }
