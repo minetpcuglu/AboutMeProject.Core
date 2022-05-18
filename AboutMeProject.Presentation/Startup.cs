@@ -64,6 +64,7 @@ namespace AboutMeProject.Presentation
 
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
+            services.AddScoped<ISocialMediaService, SocialMediaService>(); /// dý 
             services.AddScoped<IAnnouncementService, AnnouncementService>(); /// dý 
             services.AddScoped<IAppUserService, AppUserService>(); /// dý 
             services.AddScoped<IToDoListService, ToDoListService>(); /// dý 
@@ -81,6 +82,7 @@ namespace AboutMeProject.Presentation
             #endregion
             #region Automapper
             services.AddAutoMapper(typeof(AboutMapping));
+            services.AddAutoMapper(typeof(SocialMediaMapping));
             services.AddAutoMapper(typeof(FeatureMapping));
             services.AddAutoMapper(typeof(ToDoListMapping));
             services.AddAutoMapper(typeof(SettingMapping));

@@ -51,6 +51,16 @@ namespace AboutMeProject.Infrastructure.UnitOfWork
             }
         }
 
+        private ISocialMediaRepository socialmediaRepository;
+        public ISocialMediaRepository SocialMediaRepository
+        {
+            get
+            {
+                if (socialmediaRepository == null) socialmediaRepository = new SocialMediaRepository(_db);
+                return socialmediaRepository;
+            }
+        }
+
         private IAnnouncementRepository announcementRepository;
         public IAnnouncementRepository AnnouncementRepository
         {
