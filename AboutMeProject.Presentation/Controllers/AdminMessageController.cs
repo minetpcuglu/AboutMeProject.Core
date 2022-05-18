@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Application.Models.VMs;
+﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -69,12 +70,26 @@ namespace AboutMeProject.Presentation.Controllers
                     });
                 }
 
-               
+
 
 
             }
             return View();
+        }
 
+        [HttpGet]
+        public IActionResult AdminMessageSend()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AdminMessageSend(MessageUserDTO message)
+        {
+            message.SenderMail = "admin@gmail.com";
+            message.SenderName = "Admin";
+            message.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            await _messageuserService.Add(message);
+            return RedirectToAction("AdminSendbox");
         }
 
 

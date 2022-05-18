@@ -1,0 +1,48 @@
+﻿@model MessageUserDTO
+@{
+    ViewData["Title"] = "AdminMessageSend";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
+}
+
+<br />
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+
+            <p class="card-description"> Add New Admin Message  </p>
+
+            <form class="forms-sample" method="post" asp-controller="AdminMessage" asp-action="AdminMessageSend">
+                <div>
+                    <div>
+                        <br />
+                        <br />
+                        <label asp-for="Subject"> <b>Subject:</b></label>
+                        <input asp-for="Subject" type="text" class="form-control" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+
+                        <br />
+                        <label asp-for="ReceiverMail"> <b>ReceiverMail:</b></label>
+                        <input asp-for="ReceiverMail" id="txtValue" type="email" class="form-control" />
+                        <span asp-validation-for="ReceiverMail" class="text-danger"></span>
+
+                        <br />
+                        <label asp-for="ReceiverName"> <b>Receiver Name:</b></label>
+                        <input asp-for="ReceiverName" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="ReceiverMail" class="text-danger"></span>
+
+                        <br />
+                        <label asp-for="MessageContent"> <b>MessageContent:</b></label>
+                        <input asp-for="MessageContent" id="txtValue" type="text" class="form-control" />
+                        <span asp-validation-for="MessageContent" class="text-danger"></span>
+                        <br />
+                    </div>
+                </div>
+                <br>
+                <button type="submit" id="btnSaveMessage" name="SaveMessage" value="Save Message" href="/AdminMessage/AdminMessageSend/" class="btn btn-outline-success"><b>Submit</b></button>
+                <br />
+            </form>
+        </div>
+    </div>
+</div>
+
+

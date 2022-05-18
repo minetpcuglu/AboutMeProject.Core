@@ -49,9 +49,7 @@ namespace AboutMeProject.Presentation.Controllers
             {
                 foreach (var error in validateResult.Errors) ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
-
             return View(skill);
-       
         }
         [HttpPost]
         public async Task<IActionResult> DeleteSkill(int id)

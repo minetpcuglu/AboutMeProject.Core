@@ -1,0 +1,50 @@
+﻿@model ContactDTO
+@{
+    ViewData["Title"] = "UpdateContact";
+    Layout = "~/Views/Shared/_CoronaAdminLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+
+            <p class="card-description"> Update About  </p>
+
+            <form class="forms-sample" method="post" asp-controller="ContactSubPlace" asp-action="UpdateContact">
+                <div asp-validation-summary="All"></div>
+                <input type="hidden" name="EducationId" value="@Model.Id" />
+
+                <div class="form-group">
+                    <label asp-for="Title"><b>Title: </b>  </label>
+                    <input asp-for="Title" class="form-control" value="@Model.Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"><b>Description: </b>  </label>
+                    <input asp-for="Description" class="form-control" value="@Model.Description" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"><b>Phone: </b>  </label>
+                    <input asp-for="PhoneNumber" class="form-control" value="@Model.PhoneNumber" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Email"><b>Email: </b>  </label>
+                    <input asp-for="Email" class="form-control" value="@Model.Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>  
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
