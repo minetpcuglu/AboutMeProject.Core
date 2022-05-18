@@ -80,7 +80,7 @@ namespace AboutMeProject.Application.Services.Concrete
 
         public async Task<List<MessageUserDTO>> GetListSenderMessage(string mail)
         {
-            var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.SenderMail == mail);
+            var messageList = await _unitOfWork.MessageUserRepository.GetListAll(x => x.SenderMail == mail && x.IsActive==true);
             return _mapper.Map<List<MessageUserDTO>>(messageList);
         }
 
