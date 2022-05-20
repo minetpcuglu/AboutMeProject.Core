@@ -15,5 +15,6 @@ namespace AboutMeProject.Application.Services.Interface
         //Task<List<MessageUserDTO>> Take5GetListReceiverMessage(string mail);
         Task<List<Take5ListReceiverMessageDTO>> Take5List(string mail);
         public Task<int> GetTotelMessage();
+        public Task<int> GetTotelMessageCount(string mail);
     }
 }

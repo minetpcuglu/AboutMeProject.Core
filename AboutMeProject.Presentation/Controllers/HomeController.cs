@@ -13,20 +13,18 @@ namespace AboutMeProject.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IMessageUserService _messageService;
 
-        public HomeController(ILogger<HomeController> logger, IMessageUserService messageService)
+
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _messageService = messageService;
+           
         }
 
         public async Task< IActionResult> Index()
         {
-            string p = "Admin@gmail.com";
-            var value = await _messageService.Take5List(p);
 
-            return View(value);
+            return View();
         }
 
         public IActionResult Privacy()

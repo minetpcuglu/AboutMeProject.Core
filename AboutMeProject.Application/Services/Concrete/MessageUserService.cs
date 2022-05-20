@@ -107,7 +107,7 @@ namespace AboutMeProject.Application.Services.Concrete
         {
             var contact = _messageUserRepository.GetQueryable().Where(x=>x.ReceiverMail==mail && x.IsActive==true).ToList();
 
-            var result = contact/*GroupBy(x => x.SenderMail )*/.ToList().Take(5);
+            var result = contact.ToList().Take(5);
             List<Take5ListReceiverMessageDTO> listModel = new List<Take5ListReceiverMessageDTO>();
 
             foreach (var item in result)
@@ -118,11 +118,18 @@ namespace AboutMeProject.Application.Services.Concrete
                 newModel.SenderName = item.SenderName;
                 newModel.Content = item.MessageContent;
                 newModel.Date = item.Date;
+
                 listModel.Add(newModel);
             }
             var list = listModel.OrderByDescending(x => x.Id ).ToList();
 
             return list;
+        }
+
+        public async Task<int> GetTotelMessageCount(string mail)
+        {
+            var query = _messageUserRepository.GetQueryable().Where(x=>x.ReceiverMail==mail && x.IsActive==true).ToList().Count();
+            return query;
         }
     }
 }

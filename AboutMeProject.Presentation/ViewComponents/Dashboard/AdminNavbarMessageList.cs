@@ -19,8 +19,9 @@ namespace AboutMeProject.Presentation.ViewComponents.Dashboard
         public async Task<IViewComponentResult> InvokeAsync()
         {
             string p = "Admin@gmail.com";
-            var value = await _messageService.GetListReceiverMessage(p);
-
+            var value = await _messageService.Take5List(p);
+          
+            ViewBag.MessageCount = await  _messageService.GetTotelMessageCount(p);
             return View(value);
         }
     }
