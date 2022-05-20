@@ -91,9 +91,38 @@ namespace AboutMeProject.Application.Services.Concrete
             return query;
         }
 
+        //public async Task<List<MessageUserDTO>> Take5GetListReceiverMessage(string mail)
+        //{
+        //    var query = _messageUserRepository.GetQueryable().Where(x => x.ReceiverMail == mail && x.IsActive == true).ToList().Count();
+
+        //    return query;
+        //}
+
         public Task Update(MessageUserDTO t)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<Take5ListReceiverMessageDTO>> Take5List(string mail)
+        {
+            var contact = _messageUserRepository.GetQueryable().Where(x=>x.ReceiverMail==mail && x.IsActive==true).ToList();
+
+            var result = contact/*GroupBy(x => x.SenderMail )*/.ToList().Take(5);
+            List<Take5ListReceiverMessageDTO> listModel = new List<Take5ListReceiverMessageDTO>();
+
+            foreach (var item in result)
+            {
+                var newModel = new Take5ListReceiverMessageDTO();
+                newModel.SenderMail = item.SenderMail;
+                newModel.Subject = item.Subject;
+                newModel.SenderName = item.SenderName;
+                newModel.Content = item.MessageContent;
+                newModel.Date = item.Date;
+                listModel.Add(newModel);
+            }
+            var list = listModel.OrderByDescending(x => x.Id ).ToList();
+
+            return list;
         }
     }
 }

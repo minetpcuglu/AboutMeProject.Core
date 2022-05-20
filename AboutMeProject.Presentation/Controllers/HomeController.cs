@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Presentation.Models;
+﻿using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,20 @@ namespace AboutMeProject.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMessageUserService _messageService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMessageUserService messageService)
         {
             _logger = logger;
+            _messageService = messageService;
         }
 
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
-            return View();
+            string p = "Admin@gmail.com";
+            var value = await _messageService.Take5List(p);
+
+            return View(value);
         }
 
         public IActionResult Privacy()
