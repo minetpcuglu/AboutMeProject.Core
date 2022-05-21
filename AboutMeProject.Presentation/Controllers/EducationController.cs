@@ -2,6 +2,7 @@
 using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.Controllers
 {
+     [Authorize(Roles="Admin")]
     public class EducationController : Controller
     {
         private readonly IEducationService _educationService;

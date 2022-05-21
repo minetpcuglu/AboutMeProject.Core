@@ -128,6 +128,7 @@ namespace AboutMeProject.Presentation
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 options.LoginPath = "/User/Login/UserLogin/";
+                options.AccessDeniedPath = "/ErrorPage/Error401/";
             });
             #endregion
 
@@ -160,13 +161,13 @@ namespace AboutMeProject.Presentation
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Default}/{action=Index}/{id?}");
             });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}"
                 );
             });
 
