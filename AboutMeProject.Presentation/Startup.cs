@@ -8,9 +8,12 @@ using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Infrastructure.Context;
 using AboutMeProject.Presentation.Controllers;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -105,6 +108,29 @@ namespace AboutMeProject.Presentation
             services.AddSingleton<IValidator<ServiceDTO>, SettingValidation>();
             #endregion
 
+            #region Authorize
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
+            });
+
+            //services.AddAuthentication(
+            //    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+            //    {
+            //        x.LoginPath = "/AdminLogin/Index/";
+            //    }
+            //    );
+
+            services.ConfigureApplicationCookie(options =>
+            {
+
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                options.LoginPath = "/User/Login/UserLogin/";
+            });
+            #endregion
+
 
         }
 
@@ -125,6 +151,7 @@ namespace AboutMeProject.Presentation
             app.UseStaticFiles();
 
             app.UseRouting();
+            //app.UseSession();//session yönetimi için
 
             app.UseAuthentication();  //identity
             app.UseAuthorization();   //IoC
@@ -142,6 +169,9 @@ namespace AboutMeProject.Presentation
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
             });
+
+            //gidecegi url belirleme endpoint
+
         }
     }
 }

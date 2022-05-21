@@ -2,6 +2,7 @@
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Presentation.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
+    [AllowAnonymous]
     [Area("User")]
     [Route("User/[controller]/[action]")]
     public class LoginController : Controller
@@ -18,8 +20,6 @@ namespace AboutMeProject.Presentation.Areas.User.Controllers
         readonly UserManager<AppUser> _userManager;
         readonly SignInManager<AppUser> _signInManager;
         private readonly IAppUserService _appUser;
-
-
         public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IAppUserService appUser)
         {
             _appUser = appUser;
