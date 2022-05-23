@@ -43,7 +43,6 @@ namespace AboutMeProject.Presentation
             services.AddScoped<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //uygulamaya geliþtirdiðimiz context nesnesi DbContext olarak tanýtýlmaktadýr.
             #endregion
-
             #region Identity ValidatorRules
             services.AddIdentity<AppUser, AppRole>
                (x =>
@@ -63,8 +62,6 @@ namespace AboutMeProject.Presentation
 
             //böylece hem password hemde user temelli custom validasyon yapýlanmasý saðlanmýþ bulunmaktadýr.
             #endregion
-
-
             #region IoC
             services.AddScoped<IAboutService, AboutService>(); /// dý 
             services.AddScoped<ISocialMediaService, SocialMediaService>(); /// dý 
@@ -98,7 +95,6 @@ namespace AboutMeProject.Presentation
             services.AddAutoMapper(typeof(AppUserMapping));
             services.AddAutoMapper(typeof(AnnouncementMapping));
             #endregion
-
             #region FluentValidation
             services.AddSingleton<IValidator<SkillDTO>, SkillValidation>(); // constructor injection kullanacaðýmýz için Validator sýnýfýmýzý ve servisimizi inject ediyoruz. 
             services.AddSingleton<IValidator<EducationDTO>, EducationValidation>();
@@ -107,21 +103,12 @@ namespace AboutMeProject.Presentation
             services.AddSingleton<IValidator<AboutDTO>, AboutValidation>();
             services.AddSingleton<IValidator<ServiceDTO>, SettingValidation>();
             #endregion
-
             #region Authorize
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
             });
-
-            //services.AddAuthentication(
-            //    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-            //    {
-            //        x.LoginPath = "/AdminLogin/Index/";
-            //    }
-            //    );
-
             services.ConfigureApplicationCookie(options =>
             {
 
@@ -148,12 +135,12 @@ namespace AboutMeProject.Presentation
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404/"); //hata sayfasý
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-            //app.UseSession();//session yönetimi için
-
             app.UseAuthentication();  //identity
             app.UseAuthorization();   //IoC
 
@@ -171,7 +158,7 @@ namespace AboutMeProject.Presentation
                 );
             });
 
-            //gidecegi url belirleme endpoint
+          
 
         }
     }

@@ -2,6 +2,7 @@
 using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         private readonly ISettingService _settingService;

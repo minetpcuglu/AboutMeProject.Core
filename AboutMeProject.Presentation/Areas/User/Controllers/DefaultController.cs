@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
+    //[AllowAnonymous]
     [Area("User")]
     [Route("User/[controller]/[action]")]
     //[Authorize]
