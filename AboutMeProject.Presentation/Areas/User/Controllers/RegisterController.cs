@@ -2,6 +2,7 @@
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.Areas.User.Controllers
 {
+    [AllowAnonymous]
     [Area("User")]
     [Route("User/[controller]/[action]")]
     public class RegisterController : Controller

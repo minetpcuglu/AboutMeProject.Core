@@ -118,6 +118,7 @@ namespace AboutMeProject.Application.Services.Concrete
                 newModel.SenderName = item.SenderName;
                 newModel.Content = item.MessageContent;
                 newModel.Date = item.Date;
+              
                 newModel.Id = item.Id;
 
                 listModel.Add(newModel);
