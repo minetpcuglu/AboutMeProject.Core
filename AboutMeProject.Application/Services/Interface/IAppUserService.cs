@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Application.Models.VMs;
+﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using AboutMeProject.Application.Models.VMs;
+﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
 using AboutMeProject.Domain.Entities.Concrete;
 using AboutMeProject.Domain.Repository.EntityTypeRepository;
@@ -149,5 +150,13 @@ namespace AboutMeProject.Application.Services.Concrete
             await _signInManager.SignOutAsync();
         }
 
+        public async Task<List<AppUserDTO>> GetAll()
+        {
+            var value = await _unitOfWork.AboutRepository.GetAll();
+            var list = _mapper.Map<List<AppUserDTO>>(value);
+            await _unitOfWork.Commit();
+            return list;
+        }
     }
+      
 }

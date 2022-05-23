@@ -1,11 +1,20 @@
-﻿@{ 
-    Layout = null;
-}
+﻿@model MessageDTO
 
-<!DOCTYPE html>
-<!-- upto 2 directory depth-->
+@{ Layout = null; }
+
+
 <html lang="en-US">
-
+@*<head>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+    </head>*@
+<head>
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <link href="~/Toastr/toastr.min.css" rel="stylesheet" />*@
+</head>
 
 <partial name="~/Views/Shared/PartialViews/HaederPartialViews.cshtml" />
 <body id="top">
@@ -21,12 +30,70 @@
             @await Component.InvokeAsync("SkillList")
             @await Component.InvokeAsync("PortfolioList")
             @await Component.InvokeAsync("EducationList")
-            @await Html.PartialAsync("/Views/Default/Add.cshtml")
+            @*@await Html.PartialAsync("/Views/Default/Add.cshtml")*@
+
+            <div class="text-center mb-5">
+                <h2 class="marker marker-center">Contact Me</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="ContactForm" novalidate class="needs-validation">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                        
+                            <input asp-for="Name" type="text" placeholder="Name" class="form-control" id="name" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                            <br />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Mail" type="email" placeholder="Email" class="form-control" id="email" />
+                            <span asp-validation-for="Mail" class="text-danger"></span>
+                            <br />
+                        </div>
+                        <div class="form-group">
+                          
+                            <input asp-for="Content" type="text" placeholder="Message Content" class="form-control" id="content" />
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                            <br />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                            <br />
+                        </div>
+                    </form>
+                </div>
+            </div>
             @await Component.InvokeAsync("ContactList")
-          
+
             <partial name="~/Views/Shared/PartialViews/FooterPartialView.cshtml" />
         </div>
     </div>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript">
+        function submitForm() {
+            var data = $("#ContactForm").serialize();
+            console.log(data);
+            alert(data);
+            $.ajax({
+                type: 'POST',
+                url: '/Default/CreateContact',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+                data: data,
+                success: function (result) {
+                    alert('Successfully received Data ');
+                    console.log(result);
+                },
+                error: function () {
+                    alert('Failed to receive the Data');
+                    console.log('Failed ');
+                }
+            })
+        }
+    </script>
+    
+
     <div id="scrolltop"><a class="btn btn-secondary" href="#top"><span class="icon"><i class="fas fa-angle-up fa-x"></i></span></a></div>
     <script src="~/Template/scripts/imagesloaded.pkgd.min.js?ver=1.2.0"></script>
     <script src="~/Template/scripts/masonry.pkgd.min.js?ver=1.2.0"></script>
@@ -35,5 +102,9 @@
     <script src="~/Template/scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
     <script src="~/Template/scripts/aos.min.js?ver=1.2.0"></script>
     <script src="~/Template/scripts/main.js?ver=1.2.0"></script>
+
 </body>
 </html>
+
+
+

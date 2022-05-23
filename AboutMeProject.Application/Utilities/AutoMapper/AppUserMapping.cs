@@ -15,7 +15,9 @@ namespace AboutMeProject.Application.Utilities.AutoMapper
         public AppUserMapping()
         {
             CreateMap<AppUser, RegisterViewModel>().ReverseMap();
+            CreateMap<AppUser, AppUserDTO>().ReverseMap();
             CreateMap<RegisterViewModel, AppUser>().ReverseMap();
+            CreateMap<AppUserDTO, AppUser>().ReverseMap();
         }
     }
 }

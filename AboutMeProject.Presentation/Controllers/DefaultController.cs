@@ -1,6 +1,9 @@
 ﻿using AboutMeProject.Application.Models.DTOs;
+using AboutMeProject.Application.Models.VMs;
 using AboutMeProject.Application.Services.Interface;
+using AboutMeProject.Domain.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,18 +33,13 @@ namespace AboutMeProject.Presentation.Controllers
             return View(value);
         }
 
-        [HttpGet]
-        public async Task<PartialViewResult> Add()
-        {
-            return PartialView();
-        }
-
         [HttpPost]
-        public async Task<PartialViewResult> Add(MessageDTO messageDTO)
+        public async Task<IActionResult> CreateContact(MessageDTO messageDTO)
         {
+            if (!ModelState.IsValid) return BadRequest("Enter required fields");
+            messageDTO.Date = DateTime.Now.ToShortDateString();
             await _messageService.Add(messageDTO);
-            return PartialView();
-
+            return this.Ok($"Form Data received!");
         }
     }
 }

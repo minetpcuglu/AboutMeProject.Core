@@ -4,7 +4,7 @@
 </div>
 <div class="col-md-12" data-aos="zoom-in" data-aos-delay="100">
     <div class="bg-light my-2 p-3 pt-2">
-        <form action="/Default/Add/" method="POST">
+        @*<form action="/Default/Add/" method="POST">*@
             <div class="form-group my-2">
                 <label for="name" class="form-label fw-bolder">Name</label>
                 <input class="form-control" type="text" id="txtname" name="Name" required>
@@ -17,49 +17,69 @@
                 <label for="message" class="form-label fw-bolder">Message</label>
                 <textarea class="form-control" style="resize: none;" id="txtmessage" name="Content" rows="4" required></textarea>
             </div>
-            <button class="btn btn-primary mt-2" type="submit" id="addSend" name="SaveMessage" href="/Default/Index/">Send</button>
+            <button class="btn btn-primary mt-2" type="submit" id="addSend"  ">Send</button>
             <button class="btn btn-dark">Cancel</button>
-        </form>
+        @*</form>*@
     </div>
 </div>
 
 
-@*<script type="text/javascript"> yarıda bıraktım 
-    $(document).ready(function () {
-        $("#addSend").click(function () {
-            SaveMessage();
-        });
-    });
-    function SaveMessage() {
-        debugger;
-        var Message = $("#txtname").val();
-
-        var messageDTO = { Message: Message  };
-        $.ajax({
-            async: true,
-            type: 'POST',
-            dataType: 'JSON',
-            contentType: 'application/json; charset-utf-8',
-            data: Json.stringify(messageDTO),
-            url: 'Hobby/AddHobby',
-            success: function (response) {
-                if (response.success == true) {
-                    toastr.success(response.message, 'Success Alert', { timeOut: 3000, "CloseButton": true });
-                }
-                else {
-                    toastr.info(response.message, 'Information Alert', { timeOut: 3000 });
-                }
-            },
-            error: function () {
-                toastr.error('there is some problem to process your request.', 'Error Alert', { timeOut: 3000 });
-            }
-        });
-    }
-</script>*@
 
 @*@section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $("#addSend").click(function () {
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+            let values = {
+                Name: $("#txtname").val(),
+                Mail: $("#txtemail").val(),
+                Content: $("#txtmessage").val()
+            };
 
-}*@
+            $.ajax({
+                type: "Post",
+                url: "/Default/Add/",
+                data: values,
+                success: function (fonk) {
+                    let result = jQuery.parseJSON(fonk);
+                    alert(result.Name + "Islem Basarili");
+                }
+            });
+
+        });
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>*@
+
+@*<script type="text/javascript"> yarıda bıraktım
+        $(document).ready(function () {
+            $("#addSend").click(function () {
+                SaveMessage();
+            });
+        });
+        function SaveMessage() {
+            debugger;
+            var Message = $("#txtname").val();
+
+            var messageDTO = { Message: Message  };
+            $.ajax({
+                async: true,
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset-utf-8',
+                data: Json.stringify(messageDTO),
+                url: 'Hobby/AddHobby',
+                success: function (response) {
+                    if (response.success == true) {
+                        toastr.success(response.message, 'Success Alert', { timeOut: 3000, "CloseButton": true });
+                    }
+                    else {
+                        toastr.info(response.message, 'Information Alert', { timeOut: 3000 });
+                    }
+                },
+                error: function () {
+                    toastr.error('there is some problem to process your request.', 'Error Alert', { timeOut: 3000 });
+                }
+            });
+        }
+    </script>*@
+
