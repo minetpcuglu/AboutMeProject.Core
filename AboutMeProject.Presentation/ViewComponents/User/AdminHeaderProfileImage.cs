@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace AboutMeProject.Presentation.ViewComponents.User
 {
-    public class NavbarUserProfileImage : ViewComponent
+    public class AdminHeaderProfileImage : ViewComponent
     {
         private readonly UserManager<AppUser> _userManager;
-       
 
-        public NavbarUserProfileImage(UserManager<AppUser> userManager)
+        public AdminHeaderProfileImage(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-            
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -24,6 +22,7 @@ namespace AboutMeProject.Presentation.ViewComponents.User
             var value = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.Image = value.ImageUrl;
             ViewBag.UserId = value.Id;
+            ViewBag.Name = value.UserName;
 
             return View();
         }
