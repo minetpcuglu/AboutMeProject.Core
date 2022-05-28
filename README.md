@@ -29,5 +29,6 @@ Entity Framework Core Include Methods  -- Partial Views  --  View Components
 
 Areas (User)
 
+AspNet Core Identity :https://mine-topcuoglu.gitbook.io/.net-core-identity/
 
 
